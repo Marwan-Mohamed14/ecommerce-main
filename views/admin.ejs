@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="C:/Users/Majid Hussein/Desktop/Web Project/JavaScript File/admin.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Admin Panel</h1>
+        <div class="header-right">
+            <img src="/Pictures/profile-user.png" width="15%" alt="">
+            <button onclick= "location.href='/views/login.html'"  type="button">Logout</button>
+            <button id="darkModeToggle" class="dark-mode-toggle">
+                <img id="icon" src="/Pictures/sun_120349 (1).png" alt="">
+            </button>
+        </div>
+    </header>
+    <div class="wrapper">
+        <div class="sidebar">
+            <ul>
+                <li><a href="#" onclick="showSection('home')"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#" onclick="showSection('profile')"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a href="#" onclick="showSection('manage')"><i class="fas fa-address-card"></i> Manage</a></li>
+               
+            </ul>
+        </div>
+        <div class="container">
+            <div class="content content-section" id="home">
+                <div class="text-square">
+                    <h2>Welcome, Admin</h2>
+                    <p>Welcome to the Admin Panel. Here you can manage companies, products, users, and orders. Use the sidebar to navigate through different sections. This panel is designed to give you full control over the platform, allowing you to make changes, view statistics, and manage the overall functionality of the site. You have access to detailed information and tools that will help you keep everything running smoothly.</p>
+                    <p>The Home section provides an overview of the admin functionalities. This includes access to different parts of the system such as profile management, company management, product management, user management, order management, and revenue tracking. Each section is designed to be user-friendly and efficient, ensuring that you can perform your duties with ease.</p>
+                    <p>In the Profile section, you can view and edit your admin details, ensuring that your information is always up to date. The Manage section provides tools for managing companies, products, users, and orders, allowing you to keep everything organized and under control. The Revenue section offers detailed insights into the financial performance of the platform, helping you make informed decisions based on real-time data.</p>
+                    <p>Take advantage of the tools and features provided to enhance your administrative experience. Whether you need to update profile information, manage companies and products, oversee user activities, process orders, or analyze revenue statistics, the Admin Panel has everything you need to maintain the platform effectively. Keep exploring and utilizing the available resources to ensure optimal performance and success.</p>
+                </div>
+            </div>
+
+            <div class="content content-section" id="profile">
+                <h2>Admin Profile</h2>
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <td>Admin Name</td>
+                        <td><button class="edit">Edit</button></td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>admin@example.com</td>
+                        <td><button class="edit">Edit</button></td>
+                    </tr>
+                    <tr>
+                        <th>Password</th>
+                        <td>******</td>
+                        <td><button class="edit">Edit</button></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="content content-section" id="manage">
+                <h2>Manage</h2>
+                <div class="button-container">
+                    <button type="button" onclick="showSection('manageProducts')">Manage Products</button>
+                    <button type="button" onclick="showSection('manageUsers')">Manage Users</button>
+                    <button type="button" onclick="showSection('manageOrders')">Manage Orders</button>
+                </div>
+            </div>
+
+
+            <div id="manageProducts" class="content content-section">
+                <h2>Manage Products</h2>
+                <button class="add-button" onclick="showModal('product')">Add Product</button>
+                <table>
+                    <tr>
+                        <th>Product Image</th>
+                        <th>Product Name</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr data-id="Product-1">
+                        <td><img src="product1.jpg" alt="Product 1" style="width: 100px; height: auto;"></td>
+                        <td>Product 1</td>
+                        <td>Sample Description for Product 1</td>
+                        <td class="actions">
+                            <button class="edit">Edit</button>
+                            <button class="delete">Delete</button>
+                        </td>
+                    </tr>
+                    <tr data-id="Product-2">
+                        <td><img src="product2.jpg" alt="Product 2" style="width: 100px; height: auto;"></td>
+                        <td>Product 2</td>
+                        <td>Sample Description for Product 2</td>
+                        <td class="actions">
+                            <button class="edit">Edit</button>
+                            <button class="delete">Delete</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="manageUsers" class="content content-section">
+                <h2>Manage Users</h2>
+                <button class="add-button" onclick="showModal('user')">Add User</button>
+                <table>
+                    <tr>
+                        <th>User Name</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr data-id="User-1">
+                        <td>User 1</td>
+                        <td>user1@example.com</td>
+                        <td class="actions">
+                            <button class="edit">Edit</button>
+                            <button class="delete">Delete</button>
+                        </td>
+                    </tr>
+                    <tr data-id="User-2">
+                        <td>User 2</td>
+                        <td>user2@example.com</td>
+                        <td class="actions">
+                            <button class="edit">Edit</button>
+                            <button class="delete">Delete</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="manageOrders" class="content content-section">
+                <h2>Manage Orders</h2>
+                <table>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Customer</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr data-id="Order-1">
+                        <td>1</td>
+                        <td>Customer 1</td>
+                        <td>Product 1</td>
+                        <td>2</td>
+                        <td>Pending</td>
+                        <td class="actions">
+                            <button class="edit">Edit</button>
+                            <button class="delete">Delete</button>
+                        </td>
+                    </tr>
+                    <tr data-id="Order-2">
+                        <td>2</td>
+                        <td>Customer 2</td>
+                        <td>Product 2</td>
+                        <td>1</td>
+                        <td>Shipped</td>
+                        <td class="actions">
+                            <button class="edit">Edit</button>
+                            <button class="delete">Delete</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span id="modalCloseButton" class="close">&times;</span>
+        <h2 id="modalTitle">Add Item</h2>
+        <form id="modalForm">
+            
+        </form>
+        <button type="button" id="modalSaveButton">Save</button>
+        <button type="button" id="modalCancelButton">Cancel</button>
+    </div>
+</div>
+
+
+    <script src="/JavaScript File/admin.js"></script>
+</body>
+</html>

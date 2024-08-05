@@ -1,0 +1,68 @@
+
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to left,  #ffe8c9, #FAF9F6);
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+}
+
+p {
+    font-size: 16px;
+    color: #666;
+}
+
+div.buy, div.change, div.problem {
+    border: 2px solid #000;
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #fff;
+    position: relative;
+    border-radius: 20px;
+}
+
+div.buy .icon, div.change .icon, div.problem .icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    color: #666;
+    text-decoration: none;
+}
+
+div.buy .icon:hover, div.change .icon:hover, div.problem .icon:hover {
+    color: #000;
+}
+
+#buy1, #change1, #problem1 {
+    margin-top: 10px;
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color:  #2c3e50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color:  #34495e;
+}

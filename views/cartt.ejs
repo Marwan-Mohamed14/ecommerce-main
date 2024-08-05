@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="path/to/fontawesome/css/all.min.css">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="/css/cartt.css">
+    <script src="/JavaScript File/cartt.js"></script>
+</head>
+<body>
+
+<header>
+    <div class="navbar">
+        <div class="top-bar">
+            <div class="dropdown">
+                <button class="dropbtn">Categories</button>
+                <div class="dropdown-content">
+                    <a href="#">Category 1</a>
+                    <a href="#">Category 2</a>
+                    <a href="#">Category 3</a>
+                </div>
+            </div>
+            <div class="logo">
+                <img src="looogo.png" alt="Logo">  
+                <span style="color: white;"><i class="fa-solid fa-location-dot" style="color: #c57f50;"></i> Deliver to <strong>Egypt</strong></span>
+            </div>
+            <div class="search-container">
+                <span><i class="fa-solid fa-magnifying-glass" style="color: #c57f50;"></i></span>
+                <input type="text" placeholder="What are you looking for?">
+            </div>
+            <div class="menu">
+                <a href="/homepage">Home <i class="fa-solid fa-house" style="color:#c57f50;"></i></a>
+                <a href="#">العربية</a>
+                
+                <a href="/login">Log in <i class="fa-solid fa-user" style="color: #c57f50;"></i></a>
+                <a href="#">Wishlist <i class="fa-solid fa-heart" style="color: #c57f50;"></i></a >
+                <a href="/cartt">Cart <i class="fa-solid fa-cart-shopping" style="color: #c57f50;"></i> </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="cart-container">
+    <header class="cart-header">
+        <h1>Shopping Cart</h1>
+    </header>
+    <div class="cart-items">
+        <div class="cart-item">
+            <img src="louis-vuitton-nano.webp" alt="Item Image">
+            <div class="item-details">
+                <h2>Product Name</h2>
+                <p>Product Description</p>
+                <div class="quantity-controls">
+                    <button class="decrease-btn">-</button>
+                    <span class="quantity">1</span>
+                    <button class="increase-btn">+</button>
+                </div>
+                <p>Price: $<span class="price">5500</span></p>
+            </div>
+            <button class="remove-btn">Remove</button>
+        </div>
+        <!-- Repeat for more items -->
+    </div>
+    <div class="cart-summary">
+        <h2>Order Summary</h2>
+        <p>Total: $<span class="total-price">50.00</span></p>
+        <button class="checkout-btn" onclick="location.href='/views/order.html'">Proceed to Checkout</button>
+    </div>
+</div>
+
+
+
+
+
+<button onclick="goBack()">Back</button>
+<br><br>
+
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h4>CoolGadgets Logo</h4>
+                <p>Discover the Future<br>With CoolGadgets!</p>
+            </div>
+            <div>
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Useful Links</h4>
+                <ul>
+                    <li><a href="#">Coupons</a></li>
+                    <li><a href="#">Blog Post</a></li>
+                    <li><a href="#">Return Policy</a></li>
+                    <li><a href="#">Join Affiliate</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Follow Us</h4>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+        <p>&copy; Copyright 2024 - Store</p>
+    </footer>
+
+
+
+
+</body>
+</html>

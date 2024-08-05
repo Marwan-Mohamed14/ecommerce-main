@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirm Order</title>
+    <link rel="stylesheet" href="/css/order.css"> 
+</head>
+<body>
+    <form id="order-form" method="post" action="get">
+        <div class="order-container">
+            <div class="form-block" id="form-blockid">
+                <h3>Personal Information</h3>
+
+                <label for="name">Full Name:</label>
+                <input type="text" placeholder="Full Name" id="name" name="name" >
+                <br>
+
+                <label for="address">Detailed Address:</label>
+                <input type="text" placeholder="Detailed Address" id="address" name="address" >
+                <br>
+
+                <label for="postalcode">Postal Code:</label>
+                <input type="number" placeholder="Postal Code" id="postalcode" name="postalcode" >
+            </div>
+
+            <div class="form-block">
+                <h3>Payment Method</h3>
+
+                <label>
+                    <input type="radio" name="payment" value="visa" onclick="toggleVisaInfo(true)" >
+                    Visa
+                </label>
+                <br>
+
+                <label>
+                    <input type="radio" name="payment" value="cash_on_delivery" onclick="toggleVisaInfo(false)" >
+                    Cash on Delivery
+                </label>
+            </div>
+
+            <div id="visa-info" class="form-block visa-info">
+                <h3>Visa Information</h3>
+                
+                <label for="card-number">Card Number:</label>
+                <input type="text" id="card-number" name="card-number" placeholder="Card Number" >
+                <br>
+
+                <label for="expiry-date">Expiry Date:</label>
+                <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/YY" >
+                <br>
+
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" placeholder="CVV" >
+            </div>
+
+            <div class="button-group">
+                <button type="button" onclick="  window.history.back()">Back</button>
+                <button type="submit">Confirm Order</button>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        function toggleVisaInfo(show) {
+            const visaInfo = document.getElementById('visa-info');
+            visaInfo.style.display = show ? 'block' : 'none';
+        }
+    </script>
+    <script defer src="/JavaScript File/script.js"></script>
+</body>
+</html>
