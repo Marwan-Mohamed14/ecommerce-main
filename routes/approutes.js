@@ -1,7 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const productController = require('../controllers/productcontroller');
+const userController = require('../controllers/usercontroller');
 
+router.post('/products', productController.addProduct);
+router.post('/add-user', userController.addUser);
 
 
 router.get('/', (req, res) => {
@@ -51,7 +54,7 @@ router.get('/preview', (req, res) => {
 router.get('/problem', (req, res) => {
     res.render('problem');
 });
-router.post('/products', productController.addProduct);
+
 
 
 
