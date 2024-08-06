@@ -7,7 +7,8 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
 const approutes = require('./routes/approutes'); // Importing the routes
-const appcontroller = require('./controllers/appcontroller'); // Importing the controller
+const appcontroller = require('./controllers/usercontroller'); // Importing the controller
+const productRoutes = require('./routes/productRoutes');
 
 // Set EJS as the view engine
 app.set('view engine', 'ejs');
@@ -23,6 +24,7 @@ app.use(bodyParser.json());
 // Use the routes defined in approutes.js
 app.use('/', approutes);
 app.post('/signup', appcontroller.signup);
+app.use('/api', productRoutes); // 
 
 app.use('/JavaScript', express.static(path.join(__dirname, 'JavaScript')));
 

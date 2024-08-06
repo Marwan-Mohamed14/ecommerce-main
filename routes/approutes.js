@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+
 router.get('/', (req, res) => {
     res.render('homepage');
 });
@@ -48,5 +49,9 @@ router.get('/preview', (req, res) => {
 router.get('/problem', (req, res) => {
     res.render('problem');
 });
+router.post('/products', productController.addProduct);
+
+
+
 
 module.exports = router;
