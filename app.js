@@ -5,7 +5,7 @@ const path = require('path');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const app = express();
-const port = 2000;
+const port = 3000;
 const approutes = require('./routes/approutes'); // Importing the routes
 
 // Set EJS as the view engine
@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', approutes);
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/JavaScript File', express.static(path.join(__dirname, 'JavaScript File')));
+app.use('/JavaScript', express.static(path.join(__dirname, 'JavaScript')));
 
 const mongoURI = 'mongodb+srv://Kal:123321123321@cluster0.uodoskc.mongodb.net/Cluster0?retryWrites=true&w=majority&appName=Cluster0';
 
