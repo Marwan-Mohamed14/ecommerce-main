@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
 const approutes = require('./routes/approutes'); // Importing the routes
+const appcontroller = require('./controllers/appcontroller'); // Importing the controller
 
 // Set EJS as the view engine
 app.set('view engine', 'ejs');
@@ -15,10 +16,14 @@ app.set('views', path.join(__dirname, 'views'));
 // Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Add body-parser middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 // Use the routes defined in approutes.js
 app.use('/', approutes);
+app.post('/signup', appcontroller.signup);
 
-app.use(express.static(path.join(__dirname, 'public')));
 app.use('/JavaScript', express.static(path.join(__dirname, 'JavaScript')));
 
 const mongoURI = 'mongodb+srv://Kal:123321123321@cluster0.uodoskc.mongodb.net/Cluster0?retryWrites=true&w=majority&appName=Cluster0';
@@ -27,8 +32,6 @@ mongoose.connect(mongoURI, {
 
 }).then(() => console.log('MongoDB connected'))
   .catch(err => console.error('MongoDB connection error:', err));
-
-app.use(bodyParser.urlencoded({ extended: true }));
 
 const existingIds = new Set();
 
@@ -83,6 +86,7 @@ function manageSessions(req, set, res) {
     }
     return 'not found';
 }
+
 
 app.get('/maged', (req, res) => {
     manageSessions(req, true, res);
