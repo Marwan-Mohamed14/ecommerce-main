@@ -5,10 +5,12 @@ const path = require('path');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const app = express();
+
 const port = 3000;
 const approutes = require('./routes/approutes'); // Importing the routes
 const appcontroller = require('./controllers/usercontroller'); // Importing the controller
 const productRoutes = require('./routes/productsroutes');
+
 
 // Set EJS as the view engine
 app.set('view engine', 'ejs');
@@ -21,73 +23,30 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Use the routes defined in approutes.js
-app.use('/', approutes);
-app.post('/signup', appcontroller.signup);
-app.use('/', productRoutes); // 
-
-app.use('/JavaScript', express.static(path.join(__dirname, 'JavaScript')));
-
-const mongoURI = 'mongodb+srv://Kal:123321123321@cluster0.uodoskc.mongodb.net/Cluster0?retryWrites=true&w=majority&appName=Cluster0';
-
-mongoose.connect(mongoURI, {
-
-}).then(() => console.log('MongoDB connected'))
-  .catch(err => console.error('MongoDB connection error:', err));
-
-const existingIds = new Set();
-
-function generateUniqueId() {
-    let id;
-    do {
-        id = [...Array(32)].map(() => Math.random().toString(36)[2]).join('');
-    } while (existingIds.has(id));
-    existingIds.add(id);
-    return id;
-}
-
+// Session middleware setup
 app.use(session({
     genid: (req) => uuidv4(),
     secret: 'your-secret-key',
-    resave: true,
-    saveUninitialized: true,
-    cookie: { secure: false }
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false } // Set to true if using HTTPS
 }));
 
-class User {
-    constructor(username, password, id) {
-        this.username = username;
-        this.password = password;
-        this.id = id; 
-    }
-}
+// Import and use routes
+app.use('/', approutes);
+app.post('/signup', appcontroller.signup);
+app.use('/', productRoutes);
 
-const arr = [new User('maged', 'maged', generateUniqueId())];
 
-function search(id) {
-    return arr.find(user => user.id === id) || null;
-}
+// Serve static files from the "JavaScript" directory
+app.use('/JavaScript', express.static(path.join(__dirname, 'JavaScript')));
 
-function manageSessions(req, set, res) {
-    if (!req.session.user && arr.length !== 0) {
-        console.log("new client connected");
-        if (set) {
-            req.session.user = generateUniqueId();
-            arr.push(new User('someUser', 'somePassword', req.session.user));
-            res.send('User added');
-        } else {
-            return req.session.user;
-        }
-    } else {
-        let currentUser = search(req.session.user);
-        if (currentUser) {
-            console.log("reconnected", req.session.user);
-            res.send('Welcome back ' + req.session.user);
-            return req.session.user;
-        }
-    }
-    return 'not found';
-}
+// MongoDB connection
+const mongoURI = 'mongodb+srv://Kal:123321123321@cluster0.uodoskc.mongodb.net/Cluster0?retryWrites=true&w=majority&appName=Cluster0';
+mongoose.connect(mongoURI)
+    .then(() => console.log('MongoDB connected'))
+    .catch(err => console.error('MongoDB connection error:', err));
+
 
 
 app.get('/maged', (req, res) => {

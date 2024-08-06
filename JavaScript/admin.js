@@ -58,6 +58,8 @@ function showModal(type) {
                     <option value="Admin">Admin</option>
                     <option value="User">User</option>
                 </select>
+                 <label for="modalImage">Image:</label>
+                <input type="file" id="modalimage" name="modalImage">
             `;
             break;
         case 'product':
@@ -85,14 +87,13 @@ function saveData() {
     const type = document.getElementById('modalTitle').innerText.split(' ')[1].toLowerCase();
 
     if (type === 'product') {
-        // Collect product data
         const productData = {
             name: formData.get('name'),
             price: formData.get('price'),
             quantity: formData.get('quantity')
+
         };
 
-        // Send POST request to backend
         fetch('/products', {
             method: 'POST',
             headers: {
@@ -104,21 +105,19 @@ function saveData() {
         .then(data => {
             console.log('Success:', data);
             closeModal();
-            // Optionally, refresh the product list or display a success message
         })
         .catch(error => {
             console.error('Error:', error);
         });
     } else if (type === 'user') {
-        // Handle user data similarly
         const userData = {
             username: formData.get('username'),
             email: formData.get('email'),
             password: formData.get('password'),
-            type: formData.get('type')
+            type: formData.get('type') || 'User', // Default to 'User' if not provided
+            Image: formData.get('Image')
         };
 
-        // Send POST request to backend
         fetch('/signup', {
             method: 'POST',
             headers: {
@@ -130,7 +129,6 @@ function saveData() {
         .then(data => {
             console.log('Success:', data);
             closeModal();
-            // Optionally, refresh the user list or display a success message
         })
         .catch(error => {
             console.error('Error:', error);

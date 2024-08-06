@@ -1,20 +1,28 @@
-// models/users.js
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
     Username: {
         type: String,
         required: true,
-        unique: true // Ensure username is unique
+        unique: true
     },
     Email: {
         type: String,
         required: true,
-        unique: true // Ensure email is unique
+        unique: true
     },
     Password: {
         type: String,
         required: true
+    },
+    Type: {
+        type: String,
+        enum: ['Admin', 'User'],
+        default: 'User'
+    },
+    Image: {
+        type: String,
+        required: false // Optional field for image
     }
 });
 

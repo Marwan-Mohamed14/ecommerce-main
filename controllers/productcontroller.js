@@ -1,5 +1,4 @@
-
-const Product = require('../models/product'); // Ensure this path is correct
+const Product = require('../models/product'); // Import the Product model
 
 exports.getProductByName = (req, res) => {
     const { name } = req.params;
@@ -46,6 +45,7 @@ exports.addProduct = (req, res) => {
             res.status(500).send('Internal server error');
         });
 };
+
 exports.updateProductByName = (req, res) => {
     const { name } = req.params;
     const updates = req.body;

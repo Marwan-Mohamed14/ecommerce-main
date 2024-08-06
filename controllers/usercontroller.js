@@ -2,13 +2,17 @@ const bcrypt = require('bcrypt');
 const User = require('../models/users'); // Ensure this is the correct path to your User model
 
 // Function to handle user signup (registration)
+
 exports.signup = (req, res) => {
     const { username, email, password, type } = req.body;
 
     // Validate input fields
-    if (!username || !email || !password || !type) {
+    if (!username || !email || !password) {
         return res.status(400).send('All fields are required');
     }
+
+    // Default to 'User' if no type is provided
+    const userType = type || 'User';
 
     // Check if the user already exists
     User.findOne({ Email: email })
@@ -18,23 +22,27 @@ exports.signup = (req, res) => {
             }
 
             // Hash the password
-            return bcrypt.hash(password, 10)
+            bcrypt.hash(password, 10)
                 .then(hashedPassword => {
                     // Create a new user
                     const newUser = new User({
                         Username: username,
                         Email: email,
                         Password: hashedPassword,
-                        Type: type
+                        Type: userType // Save the user type
                     });
 
-                    return newUser.save();
-                })
-                .then(() => {
-                    res.status(201).send('User created successfully');
+                    newUser.save()
+                        .then(() => {
+                            res.status(201).send('User created successfully');
+                        })
+                        .catch(error => {
+                            console.error('Error creating user:', error);
+                            res.status(500).send('Internal server error: ' + error.message);
+                        });
                 })
                 .catch(error => {
-                    console.error('Error creating user:', error);
+                    console.error('Error hashing password:', error);
                     res.status(500).send('Internal server error: ' + error.message);
                 });
         })
@@ -44,8 +52,8 @@ exports.signup = (req, res) => {
         });
 };
 
-// Function to handle user login
-exports.login = (req, res) => {
+
+exports.login = (req, res, next) => {
     const { email, password } = req.body;
 
     // Validate input fields
@@ -67,9 +75,9 @@ exports.login = (req, res) => {
                         return res.status(400).send('Invalid email or password');
                     }
 
-                    // Log the user in (for example, create a session)
+                    // Set session and move to next middleware
                     req.session.userId = user._id;
-                    res.status(200).send('Logged in successfully');
+                    next();
                 });
         })
         .catch(error => {
@@ -78,18 +86,18 @@ exports.login = (req, res) => {
         });
 };
 exports.addUser = (req, res) => {
-    const { username, email, password, type } = req.body;
+    const { username, email, password, type, image } = req.body;
 
     // Validate input fields
     if (!username || !email || !password || !type) {
-        return res.status(400).send('All fields are required');
+        return res.status(400).json({ message: 'All fields are required' });
     }
 
     // Check if the user already exists
     User.findOne({ Email: email })
         .then(existingUser => {
             if (existingUser) {
-                return res.status(400).send('User already exists');
+                return res.status(400).json({ message: 'User already exists' });
             }
 
             // Hash the password
@@ -100,26 +108,27 @@ exports.addUser = (req, res) => {
                         Username: username,
                         Email: email,
                         Password: hashedPassword,
-                        Type: type
+                        Type: type,
+                        Image: image
                     });
 
                     newUser.save()
                         .then(() => {
-                            res.status(201).send('User created successfully');
+                            res.status(201).json({ message: 'User created successfully' });
                         })
                         .catch(error => {
                             console.error('Error creating user:', error);
-                            res.status(500).send('Internal server error: ' + error.message);
+                            res.status(500).json({ message: 'Internal server error: ' + error.message });
                         });
                 })
                 .catch(error => {
                     console.error('Error hashing password:', error);
-                    res.status(500).send('Internal server error: ' + error.message);
+                    res.status(500).json({ message: 'Internal server error: ' + error.message });
                 });
         })
         .catch(error => {
             console.error('Error checking user:', error);
-            res.status(500).send('Internal server error: ' + error.message);
+            res.status(500).json({ message: 'Internal server error: ' + error.message });
         });
 };
 
