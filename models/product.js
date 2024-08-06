@@ -11,19 +11,12 @@ const ProductSchema = mongoose.Schema(
             type: Number,
             required : true
         },
-        image: {
-            type: String,
-            required: false
-
-        },
+    
         quantity: {
             type: Number,
             required: true
         },
-        company: {
-            type: String,
-            required: true
-        },
+      
     },
 {
     Timestamp: true

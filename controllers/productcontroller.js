@@ -46,7 +46,6 @@ exports.addProduct = (req, res) => {
             res.status(500).send('Internal server error');
         });
 };
-
 exports.updateProductByName = (req, res) => {
     const { name } = req.params;
     const updates = req.body;

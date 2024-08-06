@@ -64,13 +64,10 @@ function showModal(type) {
                 <input type="text" id="modalProductName" name="name" required>
                 <label for="modalProductPrice">Price:</label>
                 <input type="number" id="modalProductPrice" name="price" required>
-                <label for="modalProductImage">Image:</label>
-                <input type="file" id="modalProductImage" name="image">
+
                 <label for="modalProductQuantity">Quantity:</label>
                 <input type="number" id="modalProductQuantity" name="quantity" required>
-                <label for="modalProductCompany">Company:</label>
-                <select id="modalProductCompany" name="company" required>
-                    <!-- Add options dynamically if necessary -->
+                
                 </select>
         `;
     }
@@ -84,8 +81,38 @@ function closeModal() {
 
 function saveData() {
     const formData = new FormData(document.getElementById('modalForm'));
+    const type = document.getElementById('modalTitle').innerText.split(' ')[1].toLowerCase();
 
- 
+    if (type === 'product') {
+        // Collect product data
+        const productData = {
+            name: formData.get('name'),
+            price: formData.get('price'),
+            image: formData.get('image'), // You might need to handle file upload separately
+            quantity: formData.get('quantity'),
+            company: formData.get('company')
+        };
+
+        // Send POST request to backend
+        fetch('/products', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(productData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            closeModal();
+            // Optionally, refresh the product list or display a success message
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    } else if (type === 'user') {
+        // Handle user data similarly
+    }
 
     closeModal();
 }
