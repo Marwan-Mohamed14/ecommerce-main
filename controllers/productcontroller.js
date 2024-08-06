@@ -1,5 +1,34 @@
-
+const multer = require('multer');
+const path = require('path');
 const Product = require('../models/product'); // Ensure this path is correct
+
+
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './pictures/');
+    },
+    filename: function(req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname);
+    }
+});
+
+const fileFilter = (req, file, cb) => {
+    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+        cb(null, true);
+    } else {
+        cb(new Error('File type not supported'), false);
+    }
+};
+
+const upload = multer({ 
+    storage: storage, 
+    fileFilter: fileFilter,
+    limits: {
+        fileSize: 1024 * 1024 * 5 // Limit file size to 5MB (adjust as needed)
+    }
+});
+
+
 
 exports.getProductByName = (req, res) => {
     const { name } = req.params;
@@ -28,24 +57,37 @@ exports.getAllProducts = (req, res) => {
 };
 
 exports.addProduct = (req, res) => {
-    const { name, price, image, quantity, company } = req.body;
-    const newProduct = new Product({
-        name,
-        price,
-        image,
-        quantity,
-        company
-    });
+    upload.single('productImage')(req, res, function(err) {
+        if (err instanceof multer.MulterError) {
+            return res.status(400).send('Multer error: ' + err.message);
+        } else if (err) {
+            return res.status(400).send('Error: ' + err.message);
+        }
 
-    newProduct.save()
-        .then(() => {
-            res.status(201).send('Product added successfully');
-        })
-        .catch(error => {
-            console.error('Error adding product:', error);
-            res.status(500).send('Internal server error');
+        console.log('Uploaded File:', req.file); // Log uploaded file details
+        const { name, price, quantity } = req.body;
+        const imageUrl = req.file ? '/pictures/' + req.file.filename : '';
+
+        console.log('Image URL:', imageUrl); // Log constructed image URL
+
+        const newProduct = new Product({
+            name,
+            price,
+            quantity,
+            imageUrl
         });
+
+        newProduct.save()
+            .then(() => {
+                res.status(201).send('Product added successfully');
+            })
+            .catch(error => {
+                console.error('Error adding product:', error);
+                res.status(500).send('Internal server error');
+            });
+    });
 };
+
 exports.updateProductByName = (req, res) => {
     const { name } = req.params;
     const updates = req.body;

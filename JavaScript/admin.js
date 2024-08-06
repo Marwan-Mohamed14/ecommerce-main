@@ -53,8 +53,7 @@ function showModal(type) {
                 <input type="email" id="modalEmail" name="email" required>
                 <label for="modalPassword">Password:</label>
                 <input type="password" id="modalPassword" name="password" required>
-                <label for="modalImage">Image:</label>
-                <input type="file" id="modalImage" name="image">
+                
             `;
             break;
         case 'product':
@@ -64,7 +63,8 @@ function showModal(type) {
                 <input type="text" id="modalProductName" name="name" required>
                 <label for="modalProductPrice">Price:</label>
                 <input type="number" id="modalProductPrice" name="price" required>
-
+                <label for="modalImage">Image:</label>
+                <input type="file" id="modalImage" name="image">
                 <label for="modalProductQuantity">Quantity:</label>
                 <input type="number" id="modalProductQuantity" name="quantity" required>
                 
