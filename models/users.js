@@ -20,10 +20,6 @@ const userSchema = new mongoose.Schema({
         enum: ['Admin', 'User'],
         default: 'User'
     },
-    Image: {
-        type: String,
-        required: false // Optional field for image
-    }
 });
 
 const User = mongoose.model('User', userSchema);

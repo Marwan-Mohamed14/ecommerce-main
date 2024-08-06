@@ -106,12 +106,14 @@ router.get('/problem', (req, res) => {
 });
 
 router.get('/admin', authMiddleware, (req, res) => {
+    console.log('Admin route accessed'); // Debugging line
     User.findById(req.session.userId)
         .then(user => {
+            console.log('User found:', user); // Debugging line
             if (user && user.Type === 'Admin') {
                 res.render('admin');
             } else {
-                res.redirect('/homepage'); // Redirect non-admin users
+                res.redirect('/homepage');
             }
         })
         .catch(error => {
