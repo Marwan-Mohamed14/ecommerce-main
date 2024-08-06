@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const productController = require('./controllers/productcontroller');
+const productController = require('../controllers/productcontroller'); // Correct import
 
-
-router.get('/products/:name', productController.getProductByName);
+router.get('/products/:name', productController.getProductByName); // Use productController
 router.get('/products', productController.getAllProducts);
 router.put('/products/:name', productController.updateProductByName);
 router.delete('/products/:name', productController.deleteProductByName);
