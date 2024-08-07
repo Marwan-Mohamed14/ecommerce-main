@@ -53,8 +53,13 @@ function showModal(type) {
                 <input type="email" id="modalEmail" name="email" required>
                 <label for="modalPassword">Password:</label>
                 <input type="password" id="modalPassword" name="password" required>
-                
-            `;
+                <label for="modalType">Type:</label>
+                <select name="type" id="modalType" required>
+                    <option value="Admin">Admin</option>
+                    <option value="User">User</option>
+                </select>`
+                 
+            ;
             break;
         case 'product':
             modalTitle.innerText = 'Add Product';
@@ -63,13 +68,10 @@ function showModal(type) {
                 <input type="text" id="modalProductName" name="name" required>
                 <label for="modalProductPrice">Price:</label>
                 <input type="number" id="modalProductPrice" name="price" required>
-                <label for="modalImage">Image:</label>
-                <input type="file" id="modalImage" name="image">
                 <label for="modalProductQuantity">Quantity:</label>
-                <input type="number" id="modalProductQuantity" name="quantity" required>
-                
-                </select>
-        `;
+                <input type="number" id="modalProductQuantity" name="quantity" required>`
+            ;
+            break;
     }
 
     document.getElementById('modal').style.display = 'block';
@@ -84,16 +86,13 @@ function saveData() {
     const type = document.getElementById('modalTitle').innerText.split(' ')[1].toLowerCase();
 
     if (type === 'product') {
-        // Collect product data
         const productData = {
             name: formData.get('name'),
             price: formData.get('price'),
-            image: formData.get('image'), // You might need to handle file upload separately
-            quantity: formData.get('quantity'),
-            company: formData.get('company')
+            quantity: formData.get('quantity')
+
         };
 
-        // Send POST request to backend
         fetch('/products', {
             method: 'POST',
             headers: {
@@ -105,13 +104,33 @@ function saveData() {
         .then(data => {
             console.log('Success:', data);
             closeModal();
-            // Optionally, refresh the product list or display a success message
         })
         .catch(error => {
             console.error('Error:', error);
         });
     } else if (type === 'user') {
-        // Handle user data similarly
+        const userData = {
+            username: formData.get('username'),
+            email: formData.get('email'),
+            password: formData.get('password'),
+            type: formData.get('type') || 'User', // Default to 'User' if not provided
+        };
+
+        fetch('/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            closeModal();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     }
 
     closeModal();

@@ -4,8 +4,6 @@ const userController = require('../controllers/usercontroller');
 const productController = require('../controllers/productcontroller');
 const User = require('../models/users');
 
-
-
 // Inline middleware to check if the user is logged in
 const authMiddleware = (req, res, next) => {
     if (req.session.userId) {
@@ -106,14 +104,12 @@ router.get('/problem', (req, res) => {
 });
 
 router.get('/admin', authMiddleware, (req, res) => {
-    console.log('Admin route accessed'); // Debugging line
     User.findById(req.session.userId)
         .then(user => {
-            console.log('User found:', user); // Debugging line
             if (user && user.Type === 'Admin') {
                 res.render('admin');
             } else {
-                res.redirect('/homepage');
+                res.redirect('/homepage'); // Redirect non-admin users
             }
         })
         .catch(error => {
@@ -121,6 +117,9 @@ router.get('/admin', authMiddleware, (req, res) => {
             res.status(500).send('Internal server error');
         });
 });
-router.post('/products/add', authMiddleware, productController.addProduct);
+
+router.post('/signup', userController.signup);
+router.post('/products', productController.addProduct);
+router.post('/add-user', userController.addUser);
 
 module.exports = router;
