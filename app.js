@@ -6,10 +6,13 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const app = express();
 
-const port = 3000;
+
+const port = 8000;
 const approutes = require('./routes/approutes'); // Importing the routes
 const appcontroller = require('./controllers/usercontroller'); // Importing the controller
 const productRoutes = require('./routes/productsroutes');
+const User = require('./models/users'); // Import your User model for MongoDB
+
 
 
 // Set EJS as the view engine
