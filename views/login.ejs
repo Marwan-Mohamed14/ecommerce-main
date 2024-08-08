@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="/css/login.css">
     <title>Login Page - Majystic Vault</title>
+    
 </head>
 <body>
     <div class="container" id="container">
@@ -19,9 +20,9 @@
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
                 <span>or use your email for registration</span>
-                <input type="text" placeholder="Username" name="username" required>
-                <input type="email" placeholder="Email" name="email" required>
-                <input type="password" placeholder="Password" name="password" required>
+                <input type="text" id="signUpUsername" placeholder="Username" name="username" required>
+                <input type="email" id="signUpEmail" placeholder="Email" name="email" required>
+                <input type="password" id="signUpPassword" placeholder="Password" name="password" required>
                 <button type="submit">Sign Up</button>
             </form>
         </div>
@@ -35,8 +36,8 @@
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
                 <span>or use your email password</span>
-                <input type="email" placeholder="Email" name="email" required>
-                <input type="password" placeholder="Password" name="password" required>
+                <input type="email" id="signInEmail" placeholder="Email" name="email" required>
+                <input type="password" id="signInPassword" placeholder="Password" name="password" required>
                 <a href="#">Forget Your Password?</a>
                 <button type="submit">Sign In</button>
             </form>
@@ -57,6 +58,70 @@
         </div>
     </div>
 
-    <script src="/JavaScript/script.js"></script>
+    <script>
+        const container = document.getElementById('container');
+        const registerBtn = document.getElementById('register');
+        const loginBtn = document.getElementById('login');
+
+        // Toggle between Register and Login forms
+        registerBtn.addEventListener('click', () => {
+            container.classList.add("active");
+        });
+
+        loginBtn.addEventListener('click', () => {
+            container.classList.remove("active");
+        });
+
+        // Validation for Sign In Form
+        document.getElementById('signInForm').addEventListener('submit', (e) => {
+            const email = document.getElementById('signInEmail').value;
+            const password = document.getElementById('signInPassword').value;
+
+            if (!email || !password) {
+                alert('Please fill in all required information.');
+                e.preventDefault();
+                return;
+            }
+
+            // Simple email validation using includes
+            if (!email.includes('@') || !email.includes('.')) {
+                alert('Please enter a valid email address.');
+                e.preventDefault();
+                return;
+            }
+
+            if (password.length < 8 || !/\d/.test(password)) {
+                alert('Password must contain at least one number and be at least 8 characters long.');
+                e.preventDefault();
+                return;
+            }
+        });
+
+        // Validation for Sign Up Form
+        document.getElementById('signUpForm').addEventListener('submit', (e) => {
+            const email = document.getElementById('signUpEmail').value;
+            const password = document.getElementById('signUpPassword').value;
+            const username = document.getElementById('signUpUsername').value;
+
+            if (!email || !password || !username) {
+                alert('Please fill in all required information.');
+                e.preventDefault();
+                return;
+            }
+
+            // Simple email validation using includes
+            if (!email.includes('@') || !email.includes('.')) {
+                alert('Please enter a valid email address.');
+                e.preventDefault();
+                return;
+            }
+
+            if (password.length < 8 || !/\d/.test(password)) {
+                alert('Password must contain at least one number and be at least 8 characters long.');
+                e.preventDefault();
+                return;
+            }
+        });
+    </script>
 </body>
 </html>

@@ -23,7 +23,7 @@ exports.addProduct = (req, res) => {
         }
 
         console.log('Uploaded File:', req.file); // Log uploaded file details
-        const { name, price, quantity } = req.body;
+        const { name, price, quantity,description } = req.body;
         const imageUrl = req.file ? '/Pictures/' + req.file.filename : '';
 
         console.log('Image URL:', imageUrl); // Log constructed image URL
