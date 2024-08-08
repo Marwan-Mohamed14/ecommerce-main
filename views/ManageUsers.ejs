@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset=“UTF-8”>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+   
+
+ 
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+ <link rel="stylesheet" href="/css/manageall.css">
+
+    <title>Home Page</title>
+</head>
+<body>
+    <%- include('admin') %> 
+    <button id="Back"  onclick="window.history.back()">Back</button>
+<button id="Add" >Add Product</button>
+<table>
+    <tr>
+        <th>User Name</th>
+        <th>Email</th>
+        <th>Actions</th>
+    </tr>
+    <tr data-id="User-1">
+        <td>User 1</td>
+        <td>user1@example.com</td>
+        <td class="actions">
+            <button class="edit">Edit</button>
+            <button class="delete">Delete</button>
+        </td>
+    </tr>
+    <tr data-id="User-2">
+        <td>User 2</td>
+        <td>user2@example.com</td>
+        <td class="actions">
+            <button class="edit">Edit</button>
+            <button class="delete">Delete</button>
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,22 @@
+.button-container {
+  
+    gap: 10px;
+    margin-bottom: 20px;
+margin-left: 200px;
+margin-top: 3px;
+}
+
+/* Individual buttons in the Manage section */
+button[type="button"] {
+    background-color: #333;
+    color: white;
+    border: solid 1px white;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Hover effect for Manage buttons */
+button[type="button"]:hover {
+    background-color: #34495e;
+}

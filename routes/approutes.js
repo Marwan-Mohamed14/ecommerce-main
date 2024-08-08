@@ -107,6 +107,7 @@ router.get('/problem', (req, res) => {
     res.render('problem');
 });
 
+
 router.get('/admin', authMiddleware, (req, res) => {
     User.findById(req.session.userId)
         .then(user => {
@@ -121,7 +122,21 @@ router.get('/admin', authMiddleware, (req, res) => {
             res.status(500).send('Internal server error');
         });
 });
-
+router.get('/Manage', (req, res) => {
+    res.render('Manage');
+});
+router.get('/ManageOrders', (req, res) => {
+    res.render('ManageOrders');
+});
+router.get('/ManageProducts', (req, res) => {
+    res.render('ManageProducts');
+});
+router.get('/ManageUsers', (req, res) => {
+    res.render('ManageUsers');
+});
+router.get('/profileA', (req, res) => {
+    res.render('profileA');
+});
 router.post('/products', productController.addProduct);
 router.post('/add-user', userController.addUser);
 

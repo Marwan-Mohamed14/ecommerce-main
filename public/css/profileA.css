@@ -1,0 +1,39 @@
+table {
+    width: 70%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background: #f7f7f7;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-left: 350px;
+}
+
+th, td {
+    padding: 15px 70px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #c57f50;
+    color: #fff;
+}
+
+td img {
+    display: block;
+    max-width: 100px;
+    height: auto;
+}
+.edit, .delete {
+    background-color: #c57f50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.edit:hover, .delete:hover {
+    background-color: #b36b40;
+}

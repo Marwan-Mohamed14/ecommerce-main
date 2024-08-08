@@ -1,36 +1,7 @@
-function showSection(sectionId) {
-    document.querySelectorAll('.content-section').forEach(section => section.classList.remove('active'));
-    document.getElementById(sectionId).classList.add('active');
-    if (sectionId === 'manage') {
-        document.querySelector('.button-container').style.display = 'flex';
-    } else {
-        document.querySelector('.button-container').style.display = 'none';
-    }
-}
-
-function toggleDarkMode() {
-    document.body.classList.toggle('dark-mode');
-
-    var icon = document.getElementById('icon'); 
-    if (document.body.classList.contains('dark-mode')) {
-        icon.src = '/Pictures/sun_120349 (1).png'; 
-        icon.alt = 'Light Mode Icon'; 
-    } else {
-        icon.src = '/Pictures/moon_icon-icons.com_48261 (1).png'; 
-        icon.alt = 'Dark Mode Icon'; 
-    }
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    showSection('home');
-    document.getElementById('darkModeToggle').addEventListener('click', toggleDarkMode);
-
+document.addEventListener('DOMContentLoaded', () => {
     // Add event listeners for add buttons
-    document.querySelectorAll('.add-button').forEach(button => {
-        button.addEventListener('click', function() {
-            showModal(button.innerText.split(' ')[1].toLowerCase());
-        });
-    });
+    document.getElementById('AddProdut').addEventListener('click', () => showModal('product'));
+    document.getElementById('AddUser').addEventListener('click', () => showModal('user'));
 
     // Close modal event listener
     document.getElementById('modalCloseButton').addEventListener('click', closeModal);
@@ -57,26 +28,21 @@ function showModal(type) {
                 <select name="type" id="modalType" required>
                     <option value="Admin">Admin</option>
                     <option value="User">User</option>
-                </select>`
-                 
-            ;
+                </select>`;
             break;
         case 'product':
             modalTitle.innerText = 'Add Product';
             modalForm.innerHTML = `
-              <label for="modalProductName">Name:</label>
-    <input type="text" id="modalProductName" name="name" required>
-    <label for="modalProductPrice">Price:</label>
-    <input type="number" id="modalProductPrice" name="price" required>
-    <label for="modalProductQuantity">Quantity:</label>
-    <input type="number" id="modalProductQuantity" name="quantity" required>
-    <label for="description">description:</label>
-    <input type="text" id="description" name="description" required>
-    <label for="modalProductImage">Image:</label>
-    <input type="file" id="modalProductImage" name="productImage" required>`;
-
-                
-            ;
+                <label for="modalProductName">Name:</label>
+                <input type="text" id="modalProductName" name="name" required>
+                <label for="modalProductPrice">Price:</label>
+                <input type="number" id="modalProductPrice" name="price" required>
+                <label for="modalProductQuantity">Quantity:</label>
+                <input type="number" id="modalProductQuantity" name="quantity" required>
+                <label for="modalProductDescription">Description:</label>
+                <input type="text" id="modalProductDescription" name="description" required>
+                <label for="modalProductImage">Image:</label>
+                <input type="file" id="modalProductImage" name="productImage" required>`;
             break;
     }
 
@@ -92,9 +58,19 @@ function saveData() {
     const type = document.getElementById('modalTitle').innerText.split(' ')[1].toLowerCase();
 
     if (type === 'product') {
+        const productData = {
+            name: formData.get('name'),
+            price: formData.get('price'),
+            quantity: formData.get('quantity'),
+            description: formData.get('description'),
+        };
+
         fetch('/products', {
             method: 'POST',
-            body: formData // Send the FormData object directly
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(productData)
         })
         .then(response => response.json())
         .then(data => {
@@ -128,59 +104,4 @@ function saveData() {
             console.error('Error:', error);
         });
     }
-
-    closeModal();
 }
-    const formData = new FormData(document.getElementById('modalForm'));
-    const type = document.getElementById('modalTitle').innerText.split(' ')[1].toLowerCase();
-
-    if (type === 'product') {
-        const productData = {
-            name: formData.get('name'),
-            price: formData.get('price'),
-            quantity: formData.get('quantity')
-
-        };
-
-        fetch('/products', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(productData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
-            closeModal();
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    } else if (type === 'user') {
-        const userData = {
-            username: formData.get('username'),
-            email: formData.get('email'),
-            password: formData.get('password'),
-            type: formData.get('type') || 'User', // Default to 'User' if not provided
-        };
-
-        fetch('/signup', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(userData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
-            closeModal();
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    }
-
-    closeModal();
-
