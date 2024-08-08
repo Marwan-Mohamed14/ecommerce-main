@@ -1,49 +1,7 @@
 const multer = require('multer');
 const path = require('path');
-const Product = require('../models/product'); // Ensure this path is correct
-
-
-const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, './pictures/');
-    },
-    filename: function(req, file, cb) {
-        cb(null, Date.now() + '-' + file.originalname);
-    }
-});
-
-const fileFilter = (req, file, cb) => {
-    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
-        cb(null, true);
-    } else {
-        cb(new Error('File type not supported'), false);
-    }
-};
-
-const upload = multer({ 
-    storage: storage, 
-    fileFilter: fileFilter,
-    limits: {
-        fileSize: 1024 * 1024 * 5 // Limit file size to 5MB (adjust as needed)
-    }
-});
-
-
-
-exports.getProductByName = (req, res) => {
-    const { name } = req.params;
-    Product.findOne({ name })
-        .then(product => {
-            if (!product) {
-                return res.status(404).send('Product not found');
-            }
-            res.status(200).json(product);
-        })
-        .catch(error => {
-            console.error('Error fetching product:', error);
-            res.status(500).send('Internal server error');
-        });
-};
+const Product = require('../models/product'); 
+const upload = require('../JavaScript/UploadPhoto'); // Import multer configuration
 
 exports.getAllProducts = (req, res) => {
     Product.find()
@@ -66,7 +24,7 @@ exports.addProduct = (req, res) => {
 
         console.log('Uploaded File:', req.file); // Log uploaded file details
         const { name, price, quantity } = req.body;
-        const imageUrl = req.file ? '/pictures/' + req.file.filename : '';
+        const imageUrl = req.file ? '/Pictures/' + req.file.filename : '';
 
         console.log('Image URL:', imageUrl); // Log constructed image URL
 
@@ -74,7 +32,8 @@ exports.addProduct = (req, res) => {
             name,
             price,
             quantity,
-            imageUrl
+            description,
+            image: imageUrl
         });
 
         newProduct.save()

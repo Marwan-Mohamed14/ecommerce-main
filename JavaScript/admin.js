@@ -64,12 +64,18 @@ function showModal(type) {
         case 'product':
             modalTitle.innerText = 'Add Product';
             modalForm.innerHTML = `
-                <label for="modalProductName">Name:</label>
-                <input type="text" id="modalProductName" name="name" required>
-                <label for="modalProductPrice">Price:</label>
-                <input type="number" id="modalProductPrice" name="price" required>
-                <label for="modalProductQuantity">Quantity:</label>
-                <input type="number" id="modalProductQuantity" name="quantity" required>`
+              <label for="modalProductName">Name:</label>
+    <input type="text" id="modalProductName" name="name" required>
+    <label for="modalProductPrice">Price:</label>
+    <input type="number" id="modalProductPrice" name="price" required>
+    <label for="modalProductQuantity">Quantity:</label>
+    <input type="number" id="modalProductQuantity" name="quantity" required>
+    <label for="description">description:</label>
+    <input type="text" id="description" name="description" required>
+    <label for="modalProductImage">Image:</label>
+    <input type="file" id="modalProductImage" name="productImage" required>`;
+
+                
             ;
             break;
     }
@@ -82,6 +88,49 @@ function closeModal() {
 }
 
 function saveData() {
+    const formData = new FormData(document.getElementById('modalForm'));
+    const type = document.getElementById('modalTitle').innerText.split(' ')[1].toLowerCase();
+
+    if (type === 'product') {
+        fetch('/products', {
+            method: 'POST',
+            body: formData // Send the FormData object directly
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            closeModal();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    } else if (type === 'user') {
+        const userData = {
+            username: formData.get('username'),
+            email: formData.get('email'),
+            password: formData.get('password'),
+            type: formData.get('type') || 'User',
+        };
+
+        fetch('/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            closeModal();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+    closeModal();
+}
     const formData = new FormData(document.getElementById('modalForm'));
     const type = document.getElementById('modalTitle').innerText.split(' ')[1].toLowerCase();
 
@@ -134,4 +183,4 @@ function saveData() {
     }
 
     closeModal();
-}
+

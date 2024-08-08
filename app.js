@@ -14,10 +14,14 @@ const productRoutes = require('./routes/productsroutes');
 const User = require('./models/users'); // Import your User model for MongoDB
 
 
+app.use('/Pictures', express.static(path.join(__dirname, 'Pictures')));
+
 
 // Set EJS as the view engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+
+app.use('/JavaScript', express.static(path.join(__dirname, 'JavaScript')));
 
 // Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, 'public')));
@@ -39,10 +43,9 @@ app.use(session({
 app.use('/', approutes);
 app.post('/signup', appcontroller.signup);
 app.use('/', productRoutes);
+app.use('/api/products', productRoutes); // Use the correct prefix for product routes
 
 
-// Serve static files from the "JavaScript" directory
-app.use('/JavaScript', express.static(path.join(__dirname, 'JavaScript')));
 
 // MongoDB connection
 const mongoURI = 'mongodb+srv://Kal:123321123321@cluster0.uodoskc.mongodb.net/Cluster0?retryWrites=true&w=majority&appName=Cluster0';

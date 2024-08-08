@@ -4,6 +4,10 @@ const userController = require('../controllers/usercontroller');
 const productController = require('../controllers/productcontroller');
 const User = require('../models/users');
 
+
+router.post('/signup', userController.signup);
+
+
 // Inline middleware to check if the user is logged in
 const authMiddleware = (req, res, next) => {
     if (req.session.userId) {
@@ -118,7 +122,6 @@ router.get('/admin', authMiddleware, (req, res) => {
         });
 });
 
-router.post('/signup', userController.signup);
 router.post('/products', productController.addProduct);
 router.post('/add-user', userController.addUser);
 
