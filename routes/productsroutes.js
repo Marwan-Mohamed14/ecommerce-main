@@ -8,6 +8,7 @@ router.post('/product', upload.single('productImage'), productController.addProd
 
 // Route to get all products
 router.get('/', productController.getAllProducts);
+router.get('/', productController.getAllProducts2);
 
 // Route to update a product by name
 router.put('/products/:name', productController.updateProductByName);

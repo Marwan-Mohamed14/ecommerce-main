@@ -6,18 +6,12 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const app = express();
 
-
 const port = 8000;
 const approutes = require('./routes/approutes'); // Importing the routes
-const appcontroller = require('./controllers/usercontroller'); // Importing the controller
 const productRoutes = require('./routes/productsroutes');
 const userRoutes = require('./routes/userroutes');
-const User = require('./models/users'); // Import your User model for MongoDB
-
-
 
 app.use('/Pictures', express.static(path.join(__dirname, 'Pictures')));
-
 
 // Set EJS as the view engine
 app.set('view engine', 'ejs');
@@ -41,13 +35,10 @@ app.use(session({
     cookie: { secure: false } // Set to true if using HTTPS
 }));
 
-// Import and use routes
-app.use('/', approutes);
-app.post('/signup', appcontroller.signup);
-app.use('/', productRoutes);
-app.use('/' , userRoutes);
-
-
+// Routes
+app.use('/', approutes); // Routes that include authentication logic
+app.use('/products', productRoutes); // Routes for products
+app.use('/users', userRoutes); // Routes for users
 
 // MongoDB connection
 const mongoURI = 'mongodb+srv://Kal:123321123321@cluster0.uodoskc.mongodb.net/Cluster0?retryWrites=true&w=majority&appName=Cluster0';
@@ -55,12 +46,6 @@ mongoose.connect(mongoURI)
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.error('MongoDB connection error:', err));
 
-
-
-app.get('/maged', (req, res) => {
-    manageSessions(req, true, res);
-});
-
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
+    console.log(`Server running on port ${port}`);
 });

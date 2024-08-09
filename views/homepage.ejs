@@ -34,13 +34,23 @@
                 <input type="text" placeholder="What are you looking for?">
             </div>
             <div class="menu">
-                <a href="/homepage">Home <i class="fa-solid fa-house" style="color:#c57f50;"></i></a>
-                <a href="#">العربية</a>
-                <a href="/login">Log in <i class="fa-solid fa-user" style="color: #c57f50;"></i></a>
-                <a href="#">Wishlist <i class="fa-solid fa-heart" style="color: #c57f50;"></i></a >
-                <a href="/cartt">Cart <i class="fa-solid fa-cart-shopping" style="color: #c57f50;"></i> </a>
-
-            </div>
+              <% if (typeof user !== 'undefined') { %>
+                  <!-- Menu for logged-in users -->
+                  <a href="/homepage">Home <i class="fa-solid fa-house" style="color:#c57f50;"></i></a>
+                  <a href="#">العربية</a>
+                  <a href="/account">Account <i class="fa-solid fa-user" style="color: #c57f50;"></i></a>
+                  <a href="/wishlist">Wishlist <i class="fa-solid fa-heart" style="color: #c57f50;"></i></a>
+                  <a href="/cartt">Cart <i class="fa-solid fa-cart-shopping" style="color: #c57f50;"></i></a>
+                  <a href="/logout">Logout <i class="fa-solid fa-sign-out-alt" style="color: #c57f50;"></i></a>
+              <% } else { %>
+                  <!-- Menu for non-logged-in users -->
+                  <a href="/homepage">Home <i class="fa-solid fa-house" style="color:#c57f50;"></i></a>
+                  <a href="#">العربية</a>
+                  <a href="/login">Log in <i class="fa-solid fa-user" style="color: #c57f50;"></i></a>
+                  <a href="/wishlist">Wishlist <i class="fa-solid fa-heart" style="color: #c57f50;"></i></a>
+                  <a href="/cartt">Cart <i class="fa-solid fa-cart-shopping" style="color: #c57f50;"></i></a>
+              <% } %>
+          </div>
         </div>
     </div>
 </header>
@@ -60,7 +70,7 @@
         <div class="banner-content">
             <h1>NEW COLLECTION!</h1>
             <p>Checkout our new collection now.</p>
-            <a href="#" class="shop-button" title="Checkout new collection">Shop Now</a>
+            <a href="/featured-items" class="shop-button" title="Checkout new collection">Shop Now</a>
         </div>
     </div>
 
@@ -122,7 +132,7 @@
     <div class="banner-content1">
         <h1>New Watch!</h1>
         <p>Checkout the new and luxurious watch .</p>
-        <a href="watch.html" class="shop-button1" title="Checkout new collection">Check out now</a>
+        <a href="/featured-items" class="shop-button1" title="Checkout new collection">Check out now</a>
     </div>
 </div>
 
@@ -178,7 +188,7 @@
     <div class="banner2-content">
         <h1>NEW Dress!</h1>
         <p>Checkout The new Fior Dress.</p>
-        <a href="dress.html" class="shop-button2" title="Checkout new collection">Shop Now</a>
+        <a href="/featured-items" class="shop-button2" title="Checkout new collection">Shop Now</a>
     </div>
 </div>
 

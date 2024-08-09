@@ -99,3 +99,11 @@ exports.deleteProductByName = (req, res) => {
             res.status(500).send('Internal server error');
         });
 };
+exports.getAllProducts2 = async (req, res) => {
+    try {
+        const products = await Product.find();
+        res.render('featured-items', { products });
+    } catch (error) {
+        res.status(500).send('Error rendering page');
+    }
+};
