@@ -9,8 +9,6 @@ const Product = require('../models/product'); // Import Product model
 router.get('/ManageUsers', userController.getAllUsers);
 router.get('/ManageProducts', productController.getAllProducts);
 
-router.get('/ManageUsers' , userController.getAllUsers);
-router.get('/ManageProducts' , productController.getAllProducts);
 // Inline middleware to check if the user is logged in
 const authMiddleware = (req, res, next) => {
     if (req.session.userId) {
@@ -109,6 +107,7 @@ router.get('/order', (req, res) => {
     res.render('order');
 });
 
+// Route to fetch and display a single product by ID
 router.get('/preview/:id', async (req, res) => {
     try {
         const productId = req.params.id;
@@ -159,7 +158,7 @@ router.get('/admin', authMiddleware, (req, res) => {
         });
 });
 
-
+// Routes for handling POST requests
 router.post('/signup', userController.signup);
 router.post('/products', productController.addProduct);
 router.post('/add-user', userController.addUser);

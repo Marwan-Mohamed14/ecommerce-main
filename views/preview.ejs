@@ -8,124 +8,71 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
-
-
-
-    <body>
-        <header>
-            <div class="navbar">
-                <div class="top-bar">
-                    <div class="dropdown">
-                        <button class="dropbtn">Categories</button>
-                        <div class="dropdown-content">
-                            <a href="#">Category 1</a>
-                            <a href="#">Category 2</a>
-                            <a href="#">Category 3</a>
-                        </div>
-                    </div>
-                    <div class="logo">
-                        <img src="looogo.png" alt="Logo">  
-                        <span style="color: white;"><i class="fa-solid fa-location-dot" style="color: goldenrod;"></i> Deliver to <strong>Egypt</strong></span>
-                    </div>
-                    <div class="search-container">
-                        <span><i class="fa-solid fa-magnifying-glass" style="color: goldenrod;"></i></span>
-                        <input type="text" placeholder="What are you looking for?">
-                    </div>
-                    <div class="menu">
-                        <a href="/homepage">Home <i class="fa-solid fa-house" style="color: goldenrod;"></i></a>
-                        <a href="#">العربية</a>
-                        
-                        <a href="/login">Log in <i class="fa-solid fa-user" style="color: goldenrod;"></i></a>
-                        <a href="#">Wishlist <i class="fa-solid fa-heart" style="color: goldenrod;"></i></a >
-                        <a href="/cartt">Cart <i class="fa-solid fa-cart-shopping" style="color: goldenrod;"></i> </a>
+    <header>
+        <div class="navbar">
+            <div class="top-bar">
+                <div class="dropdown">
+                    <button class="dropbtn">Categories</button>
+                    <div class="dropdown-content">
+                        <a href="#">Category 1</a>
+                        <a href="#">Category 2</a>
+                        <a href="#">Category 3</a>
                     </div>
                 </div>
-            </div>
-        </header>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-        <div class="banner">
-            <div class="banner-content">
-                <h1>NEW COLLECTION!</h1>
-                <p>Checkout our new collection now.</p>
-                <a href="#" class="shop-button" title="Checkout new collection">Shop Now</a>
+                <div class="logo">
+                    <img src="looogo.png" alt="Logo">  
+                    <span style="color: white;"><i class="fa-solid fa-location-dot" style="color: goldenrod;"></i> Deliver to <strong>Egypt</strong></span>
+                </div>
+                <div class="search-container">
+                    <span><i class="fa-solid fa-magnifying-glass" style="color: goldenrod;"></i></span>
+                    <input type="text" placeholder="What are you looking for?">
+                </div>
+                <div class="menu">
+                    <a href="/homepage">Home <i class="fa-solid fa-house" style="color: goldenrod;"></i></a>
+                    <a href="#">العربية</a>
+                    <a href="/login">Log in <i class="fa-solid fa-user" style="color: goldenrod;"></i></a>
+                    <a href="#">Wishlist <i class="fa-solid fa-heart" style="color: goldenrod;"></i></a>
+                    <a href="/cartt">Cart <i class="fa-solid fa-cart-shopping" style="color: goldenrod;"></i> </a>
+                </div>
             </div>
         </div>
-    
+    </header>
 
+    <div class="banner">
+        <div class="banner-content">
+            <h1>NEW COLLECTION!</h1>
+            <p>Checkout our new collection now.</p>
+            <a href="#" class="shop-button" title="Checkout new collection">Shop Now</a>
+        </div>
+    </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-     <div class="product-container">
+    <div class="product-container">
         <div class="product-images">
             <div class="main-image">
-                <img src="https://media.gucci.com/style/DarkGray_Center_0_0_1200x1200/1704994366/786186_AADJ9_9097_012_100_0000_Light-Mens-Gucci-Re-Web-trainer.jpg" 
-                alt="product image">
+                <img src="<%= product.image %>" alt="<%= product.name %>">
             </div>
-         </div>
+        </div>
         
-         <div class="product-details">
-            <h1>GUCCI Shoes Spring Edition</h1>
-            
-           
+        <div class="product-details">
+            <h1><%= product.name %></h1>
             <div class="price">
-                <span class="original-price">$399.00</span>
-                
+                <span class="original-price">$<%= product.price %></span>
             </div>
             <p class="availability">10+ sold recently</p>
             <p class="delivery"><b>Get it in 7 business days</b></p>
-        
-           <br><br>
+            <br><br>
             <div class="buttons">
                 <button class="add-to-cart" onclick="myfunction()">Add to Cart</button>
                 <button class="wishlist"><i class="fa-solid fa-heart"></i></button>
             </div>
         </div>
     </div>
+
     <script>
         function myfunction() {
             alert("Item added to Cart!");
         }
     </script>
-
-
-
-
-
-
-
-
-
-
-
-
 
     <footer>
         <div class="footer-content">

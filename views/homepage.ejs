@@ -50,20 +50,22 @@
 
 <hr>
 
+<!-- Inside homepage.ejs -->
 <div class="containerr">
-    <% products.forEach(product => { %>
-    <div class="card">
-        <div class="image-container">
-            <img src="<%= product.image %>" alt="<%= product.name %>">
-        </div>
-        <h1><%= product.name %></h1>
-        <p class="price">$<%= product.price %></p>
-        <p><%= product.description %></p>
-        <p>Left in stock: <%= product.quantity %></p>
-        <p><button onclick="location.href='/preview/<%= product._id %>'">Buy Now</button></p>
-    </div>
-    <% }) %>
+  <% products.forEach(product => { %>
+      <div class="card">
+          <div class="image-container">
+              <img src="<%= product.image %>" alt="<%= product.name %>">
+          </div>
+          <h1><%= product.name %></h1>
+          <p class="price">$<%= product.price %></p>
+          <p><%= product.description %></p>
+          <p>Left in stock: <%= product.stock %></p>
+          <p><a href="/preview/<%= product._id %>"><button>Buy Now</button></a></p>
+      </div>
+  <% }); %>
 </div>
+
 
 <footer>
     <div class="footer-content">
