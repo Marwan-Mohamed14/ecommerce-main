@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset=“UTF-8”>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+   
+
+ 
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+ <link rel="stylesheet" href="/css/managepro.css">
+
+    <title>Home Page</title>
+</head>
+<body>
+    <%- include('admin') %> 
+    <button id="Back"  onclick="window.history.back()">Back</button>
+<button id="AddProduct" onclick="showModal()" >Add Product</button>
+<table>
+    <tr>
+        <th>Product Image</th>
+        <th>Product Name</th>
+        <th>Description</th>
+        <th>Actions</th>
+    </tr>
+    <tr data-id="Product-1">
+        <td><img src="product1.jpg" alt="Product 1" style="width: 100px; height: auto;"></td>
+        <td>Product 1</td>
+        <td>Sample Description for Product 1</td>
+        <td class="actions">
+            <button class="edit">Edit</button>
+            <button class="delete">Delete</button>
+        </td>
+    </tr>
+    <tr data-id="Product-2">
+        <td><img src="product2.jpg" alt="Product 2" style="width: 100px; height: auto;"></td>
+        <td>Product 2</td>
+        <td>Sample Description for Product 2</td>
+        <td class="actions">
+            <button class="edit">Edit</button>
+            <button class="delete">Delete</button>
+        </td>
+    </tr>
+</table>
+</div>
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span id="modalCloseButton" class="close">&times;</span>
+        <h2 id="modalTitle">Add Product</h2>
+        <form id="modalForm"></form>
+        <button type="button" id="modalSaveButton">Save</button>
+        <button type="button" id="modalCancelButton">Cancel</button>
+    </div>
+</div>
+
+<script src="/JavaScript/ManageProducts.js"></script>
+</body>
+</html>

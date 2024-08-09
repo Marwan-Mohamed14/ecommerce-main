@@ -1,0 +1,186 @@
+/* Table Styles */
+table {
+    width: 70%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background: #f7f7f7;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-left: 250px;
+}
+
+th, td {
+    padding: 15px 80px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #c57f50;
+    color: #fff;
+}
+
+td img {
+    display: block;
+    max-width: 100px;
+    height: auto;
+}
+
+button[type="button"] {
+    background-color: #333;
+    color: white;
+    border: none;
+    border: solid 1px white;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Hover effect for Manage buttons */
+button[type="button"]:hover {
+    background-color: #34495e;
+}
+
+/* Edit and Delete buttons */
+.actions {
+    display: flex; /* Use flexbox to align buttons */
+    gap: 10px; /* Space between buttons */
+}
+
+.edit, .delete {
+    background-color: #c57f50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    flex: 1; /* Ensure buttons take equal width */
+    text-align: center; /* Center text inside buttons */
+}
+
+.edit:hover, .delete:hover {
+    background-color: #b36b40;
+}
+
+#AddUser {
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    gap: 10px;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+#AddUser:hover {
+    background-color: #34495e;
+}
+
+#Back {
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    gap: 10px;
+    margin-left: 250px;
+    margin-top: 20px;
+}
+
+#Back:hover {
+    background-color: #34495e;
+}
+
+/* Modal container */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal content box */
+.modal-content {
+    background-color: white;
+    margin: 5% auto; /* 5% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%; /* Adjust this to change the default width */
+    max-width: 700px; /* Increase the maximum width */
+    height: 500px; /* Set a specific height */
+    max-height: 80vh; /* Maximum height, 80% of the viewport height */
+    overflow-y: auto; /* Allow scrolling if content overflows */
+    border-radius: 8px; /* Rounded corners */
+}
+
+/* Close button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Modal title */
+#modalTitle {
+    margin-bottom: 15px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Form elements */
+.modal-content label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="email"],
+.modal-content input[type="password"],
+.modal-content input[type="number"],
+.modal-content input[type="file"],
+.modal-content select {
+    width: 100%; /* Full width */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+/* Buttons */
+#modalSaveButton,
+#modalCancelButton {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+#modalCancelButton {
+    background-color: #555;
+}
+
+#modalSaveButton:hover,
+#modalCancelButton:hover {
+    opacity: 0.8;
+}

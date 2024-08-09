@@ -11,7 +11,9 @@ const port = 8000;
 const approutes = require('./routes/approutes'); // Importing the routes
 const appcontroller = require('./controllers/usercontroller'); // Importing the controller
 const productRoutes = require('./routes/productsroutes');
+const userRoutes = require('./routes/userroutes');
 const User = require('./models/users'); // Import your User model for MongoDB
+
 
 
 app.use('/Pictures', express.static(path.join(__dirname, 'Pictures')));
@@ -43,7 +45,7 @@ app.use(session({
 app.use('/', approutes);
 app.post('/signup', appcontroller.signup);
 app.use('/', productRoutes);
-app.use('/api/products', productRoutes); // Use the correct prefix for product routes
+app.use('/' , userRoutes);
 
 
 

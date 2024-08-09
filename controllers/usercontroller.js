@@ -1,7 +1,22 @@
 const bcrypt = require('bcrypt');
 const User = require('../models/users'); // Ensure this is the correct path to your User model
 
-// Function to handle user signup (registration)
+// user-management.js (Controller)
+
+exports.getAllUsers = async (req, res) => {
+    try {
+        // Fetch all users using await
+        const users = await User.find();
+        
+        // Render the 'ManageUsers' template with the users data
+        res.render('ManageUsers', { users });
+    } catch (error) {
+        // Handle any errors that occur during the fetching or rendering process
+        console.error('Error fetching users:', error);
+        res.status(500).send('Internal server error: ' + error.message);
+    }
+};
+;
 
 exports.signup = (req, res) => {
     const { username, email, password, type } = req.body;
