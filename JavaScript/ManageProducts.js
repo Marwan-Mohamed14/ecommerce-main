@@ -42,6 +42,8 @@ function closeModal() {
     const modal = document.getElementById('modal');
     if (modal) {
         modal.style.display = 'none';
+        // Reset the form
+        document.getElementById('modalForm').reset();
     } else {
         console.error('Modal element not found');
     }
@@ -60,17 +62,14 @@ function saveProduct() {
         method: method,
         body: formData
     })
-    .then(response => {
-        console.log('Response Status:', response.status);
-        return response.text(); // Read response as text
-    })
+    .then(response => response.text())
     .then(text => {
         console.log('Response Text:', text);
         try {
-            const data = JSON.parse(text); // Attempt to parse JSON
+            const data = JSON.parse(text);
             console.log('Parsed Data:', data);
             return data;
-        } catch (error) {   
+        } catch (error) {
             console.error('Error parsing JSON:', error);
             throw new Error('Invalid JSON response');
         }
@@ -84,7 +83,6 @@ function saveProduct() {
         console.error('Error:', error);
     });
 }
-
 
 function fetchProducts() {
     fetch('/products')
@@ -144,15 +142,11 @@ function deleteProduct(productId) {
         fetch(`/products/${productId}`, {
             method: 'DELETE'
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
             console.log('Product deleted:', data);
             fetchProducts(); // Refresh the product list
+            alert('Product deleted successfully!');
         })
         .catch(error => console.error('Error deleting product:', error));
     }

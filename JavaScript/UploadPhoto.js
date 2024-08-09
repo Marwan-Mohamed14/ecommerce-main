@@ -4,7 +4,8 @@ const multer = require('multer');
 // Define the storage configuration for multer
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, path.join(__dirname, '../public/Pictures')); // Update path to reflect new directory location
+        // Corrected path to match your directory structure
+        cb(null, path.join(__dirname, '..', 'public', 'Pictures'));
     },
     filename: function (req, file, cb) {
         cb(null, Date.now() + '-' + file.originalname);
