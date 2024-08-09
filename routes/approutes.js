@@ -3,9 +3,12 @@ const router = express.Router();
 const userController = require('../controllers/usercontroller');
 const productController = require('../controllers/productcontroller');
 const User = require('../models/users');
+const Product = require('../models/product'); // Import Product model
 
-router.get('/ManageUsers' , userController.getAllUsers);
-router.get('/ManageProducts' , productController.getAllProducts);
+// Routes for managing users and products
+router.get('/ManageUsers', userController.getAllUsers);
+router.get('/ManageProducts', productController.getAllProducts);
+
 // Inline middleware to check if the user is logged in
 const authMiddleware = (req, res, next) => {
     if (req.session.userId) {
@@ -62,8 +65,8 @@ router.get('/signup', (req, res) => {
     res.render('signup');
 });
 
-
-router.use(authMiddleware); 
+// Protected Routes (require authentication)
+router.use(authMiddleware);
 
 router.get('/', (req, res) => {
     res.render('homepage');
@@ -89,16 +92,34 @@ router.get('/featured-items', (req, res) => {
     res.render('featured-items');
 });
 
-router.get('/homepage', (req, res) => {
-    res.render('homepage');
+// Updated Homepage route to fetch and display products
+router.get('/homepage', async (req, res) => {
+    try {
+        const products = await productController.getAllProductsData(); // Fetch products from the database
+        res.render('homepage', { products }); // Pass products to EJS template
+    } catch (error) {
+        console.error('Error fetching products:', error);
+        res.status(500).send('Server error');
+    }
 });
 
 router.get('/order', (req, res) => {
     res.render('order');
 });
 
-router.get('/preview', (req, res) => {
-    res.render('preview');
+router.get('/preview/:id', async (req, res) => {
+    try {
+        const productId = req.params.id;
+        const product = await Product.findById(productId); // Fetch a single product by ID
+        if (product) {
+            res.render('preview', { product });
+        } else {
+            res.status(404).send('Product not found');
+        }
+    } catch (error) {
+        console.error('Error fetching product:', error);
+        res.status(500).send('Server error');
+    }
 });
 
 router.get('/problem', (req, res) => {
@@ -108,6 +129,7 @@ router.get('/problem', (req, res) => {
 router.get('/Manage', (req, res) => {
     res.render('Manage');
 });
+
 router.get('/ManageOrders', (req, res) => {
     res.render('ManageOrders');
 });
@@ -115,9 +137,11 @@ router.get('/ManageOrders', (req, res) => {
 router.get('/ManageUsers', (req, res) => {
     res.render('ManageUsers');
 });
+
 router.get('/profileA', (req, res) => {
     res.render('profileA');
 });
+
 router.get('/admin', authMiddleware, (req, res) => {
     User.findById(req.session.userId)
         .then(user => {
@@ -133,7 +157,7 @@ router.get('/admin', authMiddleware, (req, res) => {
         });
 });
 
-
+// Additional routes
 router.post('/signup', userController.signup);
 router.post('/products', productController.addProduct);
 router.post('/add-user', userController.addUser);

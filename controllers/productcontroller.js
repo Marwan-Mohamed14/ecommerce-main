@@ -4,10 +4,20 @@ const fs = require('fs');
 const Product = require('../models/product');
 const upload = require('../JavaScript/UploadPhoto'); // Import multer configuration
 
-// Get all products
+// Helper function to get all products
+exports.getAllProductsData = async () => {
+    try {
+        return await Product.find();
+    } catch (error) {
+        console.error('Error fetching products:', error);
+        throw new Error('Error fetching products');
+    }
+};
+
+// Route handler to get all products and render the page
 exports.getAllProducts = async (req, res) => {
     try {
-        const products = await Product.find();
+        const products = await exports.getAllProductsData();
         res.render('ManageProducts', { products });
     } catch (error) {
         res.status(500).send('Error rendering page');
