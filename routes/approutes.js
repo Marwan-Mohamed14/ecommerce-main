@@ -4,6 +4,9 @@ const userController = require('../controllers/usercontroller');
 const productController = require('../controllers/productcontroller');
 const User = require('../models/users');
 
+router.post('/signup', userController.signup);
+router.post('/products', productController.addProduct);
+router.post('/add-user', userController.addUser);
 router.get('/ManageUsers' , userController.getAllUsers);
 router.get('/ManageProducts' , productController.getAllProducts);
 // Inline middleware to check if the user is logged in
@@ -134,8 +137,6 @@ router.get('/admin', authMiddleware, (req, res) => {
 });
 
 
-router.post('/signup', userController.signup);
-router.post('/products', productController.addProduct);
-router.post('/add-user', userController.addUser);
+
 
 module.exports = router;
