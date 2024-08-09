@@ -9,6 +9,8 @@ const Product = require('../models/product'); // Import Product model
 router.get('/ManageUsers', userController.getAllUsers);
 router.get('/ManageProducts', productController.getAllProducts);
 
+router.get('/ManageUsers' , userController.getAllUsers);
+router.get('/ManageProducts' , productController.getAllProducts);
 // Inline middleware to check if the user is logged in
 const authMiddleware = (req, res, next) => {
     if (req.session.userId) {
@@ -157,7 +159,7 @@ router.get('/admin', authMiddleware, (req, res) => {
         });
 });
 
-// Additional routes
+
 router.post('/signup', userController.signup);
 router.post('/products', productController.addProduct);
 router.post('/add-user', userController.addUser);
