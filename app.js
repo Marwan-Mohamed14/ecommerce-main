@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const multer = require('multer'); // Add multer for file uploads
 const app = express();
 
 const port = 8000;
@@ -11,7 +12,19 @@ const approutes = require('./routes/approutes'); // Importing the routes
 const productRoutes = require('./routes/productsroutes');
 const userRoutes = require('./routes/userroutes');
 
-app.use('/Pictures', express.static(path.join(__dirname, 'Pictures')));
+// Middleware setup for file uploads
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, '/public/Pictures/'); // Ensure this directory exists
+    },
+    filename: (req, file, cb) => {
+        cb(null, uuidv4() + path.extname(file.originalname));
+    }
+});
+const upload = multer({ storage });
+
+app.use('/Pictures', express.static(path.join(__dirname, 'public/Pictures')));
+
 
 // Set EJS as the view engine
 app.set('view engine', 'ejs');
