@@ -47,5 +47,15 @@ function isValidExpiryDate(date) {
     const month = parseInt(parts[0], 10);
     const year = parseInt(parts[1], 10);
 
-    return month >= 1 && month <= 12 && year >= 0 && year <= 99;
+    if (month < 1 || month > 12 || isNaN(month) || isNaN(year)) return false;
+
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth() + 1;
+    const currentYear = currentDate.getFullYear() % 100;
+
+    if (year < currentYear || (year === currentYear && month < currentMonth)) {
+        return false;
+    }
+
+    return true;
 }
