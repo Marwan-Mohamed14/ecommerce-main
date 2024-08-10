@@ -6,7 +6,7 @@ const User = require('../models/users');
 const Product = require('../models/product'); // Import Product model
 
 router.post('/add-user', userController.addUser);
-// Routes for managing users and products
+router.get('/featured-items' , productController.getAllProducts2);
 router.get('/ManageUsers', userController.getAllUsers);
 router.get('/ManageProducts', productController.getAllProducts);
 router.post('/signup', userController.signup);

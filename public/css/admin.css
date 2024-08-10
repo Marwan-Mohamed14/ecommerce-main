@@ -1,3 +1,4 @@
+/* Default styles */
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
@@ -93,4 +94,25 @@ header h1 {
 
 .sidebar ul li a:hover {
     background-color: #34495e;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background: linear-gradient(to left, #2e2e2e, #1c1c1c);
+}
+
+header.dark-mode {
+    background-color: #1c1c1c;
+}
+
+.sidebar.dark-mode {
+    background-color: #1a1a1a;
+}
+
+.sidebar.dark-mode ul li a {
+    color: #ccc;
+}
+
+.sidebar.dark-mode ul li a:hover {
+    background-color: #333;
 }

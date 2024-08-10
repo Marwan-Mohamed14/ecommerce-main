@@ -6,7 +6,6 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const multer = require('multer'); // Add multer for file uploads
 const app = express();
-
 const port = 8000;
 const approutes = require('./routes/approutes'); // Importing the routes
 const productRoutes = require('./routes/productsroutes');

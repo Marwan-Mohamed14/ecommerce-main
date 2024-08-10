@@ -23,6 +23,15 @@ exports.getAllProducts = async (req, res) => {
         res.status(500).send('Error rendering page');
     }
 };
+exports.getAllProducts2 = async (req, res) => {
+    try {
+        const products = await exports.getAllProductsData();
+        res.render('featured-items', { products });
+    } catch (error) {
+        res.status(500).send('Error rendering page');
+    }
+};
+
 
 // Add a new product
 exports.addProduct = (req, res) => {
