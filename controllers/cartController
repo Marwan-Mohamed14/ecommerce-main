@@ -1,0 +1,84 @@
+const Cart = require('../models/cart');
+
+// Function to display the user's cart
+exports.getCart = async (req, res) => {
+    try {
+        const userId = req.session.userId;
+        if (!userId) {
+            return res.redirect('/login'); // Redirect to login if the user is not logged in
+        }
+
+        const cart = await Cart.findOne({ userId }).populate('items.productId');
+
+        if (!cart || cart.items.length === 0) {
+            return res.render('cartt', { cart: null, message: 'Your cart is empty' });
+        }
+
+        res.render('cartt', { cart, message: null });
+    } catch (error) {
+        console.error('Error fetching cart:', error);
+        res.status(500).send('Server error');
+    }
+};
+
+// Function to add a product to the cart
+exports.addToCart = async (req, res) => {
+    try {
+        const userId = req.session.userId;
+        if (!userId) {
+            return res.redirect('/login'); // Ensure the user is logged in
+        }
+
+        const productId = req.params.productId;
+        const quantity = req.body.quantity || 1; // Default quantity to 1 if not specified
+
+        let cart = await Cart.findOne({ userId });
+
+        if (!cart) {
+            // If the user doesn't have a cart yet, create one
+            cart = new Cart({ userId, items: [] });
+        }
+
+        const existingItem = cart.items.find(item => item.productId.equals(productId));
+
+        if (existingItem) {
+            // If the product already exists in the cart, increment the quantity
+            existingItem.quantity += quantity;
+        } else {
+            // If the product doesn't exist in the cart, add it
+            cart.items.push({ productId, quantity });
+        }
+
+        await cart.save();
+        res.redirect('/cartt'); // Redirect to the cart page after adding an item
+    } catch (error) {
+        console.error('Error adding to cart:', error);
+        res.status(500).send('Server error');
+    }
+};
+
+// Function to remove an item from the cart
+exports.removeFromCart = async (req, res) => {
+    try {
+        const userId = req.session.userId;
+        if (!userId) {
+            return res.redirect('/login'); // Ensure the user is logged in
+        }
+
+        const productId = req.params.productId;
+
+        let cart = await Cart.findOne({ userId });
+
+        if (!cart) {
+            return res.redirect('/cartt'); // Redirect to the cart page if cart is not found
+        }
+
+        cart.items = cart.items.filter(item => !item.productId.equals(productId));
+
+        await cart.save();
+        res.redirect('/cartt'); // Redirect to the cart page after removing the item
+    } catch (error) {
+        console.error('Error removing from cart:', error);
+        res.status(500).send('Server error');
+    }
+};

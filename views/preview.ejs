@@ -34,8 +34,10 @@
             <p class="delivery"><b>Get it in 7 business days</b></p>
             <br><br>
             <div class="buttons">
-                <button class="add-to-cart" onclick="myfunction()">Add to Cart</button>
-                
+                <!-- Add to Cart Form -->
+                <form action="/cart/add/<%= product._id %>" method="POST">
+                    <button type="submit" class="add-to-cart">Add to Cart</button>
+                </form>
             </div>
         </div>
     </div>

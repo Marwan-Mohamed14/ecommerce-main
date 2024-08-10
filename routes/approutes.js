@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/usercontroller');
 const productController = require('../controllers/productcontroller');
+const cartController = require('../controllers/cartController')
 const User = require('../models/users');
 const Product = require('../models/product'); // Import Product model
-
+router.get('/cartt', cartController.getCart);
 router.post('/add-user', userController.addUser);
 router.get('/featured-items' , productController.getAllProducts2);
 router.get('/ManageUsers', userController.getAllUsers);

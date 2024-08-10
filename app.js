@@ -10,6 +10,7 @@ const port = 8000;
 const approutes = require('./routes/approutes'); // Importing the routes
 const productRoutes = require('./routes/productsroutes');
 const userRoutes = require('./routes/userroutes');
+const carttRoutes = require('./routes/cartroutes');
 
 // Middleware setup for file uploads
 const storage = multer.diskStorage({
@@ -51,6 +52,7 @@ app.use(session({
 app.use('/', approutes); // Routes that include authentication logic
 app.use('/products', productRoutes); // Routes for products
 app.use('/users', userRoutes); // Routes for users
+app.use(carttRoutes);
 
 // MongoDB connection
 const mongoURI = 'mongodb+srv://Kal:123321123321@cluster0.uodoskc.mongodb.net/Cluster0?retryWrites=true&w=majority&appName=Cluster0';

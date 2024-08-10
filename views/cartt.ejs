@@ -10,66 +10,63 @@
     <script src="/JavaScript/cartt.js"></script>
 </head>
 <body>
-
     <%- include('partials/nav') %>
+    
+    <div class="cart-container">
+        <header class="cart-header">
+            <h1>Shopping Cart</h1>
+        </header>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="cart-container">
-    <header class="cart-header">
-        <h1>Shopping Cart</h1>
-    </header>
-    <div class="cart-items">
-        <div class="cart-item">
-            <img src="louis-vuitton-nano.webp" alt="Item Image">
-            <div class="item-details">
-                <h2>Product Name</h2>
-                <p>Product Description</p>
-                <div class="quantity-controls">
-                    <button class="decrease-btn">-</button>
-                    <span class="quantity">1</span>
-                    <button class="increase-btn">+</button>
-                </div>
-                <p>Price: $<span class="price">5500</span></p>
-            </div>
-            <button class="remove-btn">Remove</button>
+        <div class="cart-items">
+            <% if (cart && cart.items.length > 0) { %>
+                <% cart.items.forEach(item => { %>
+                    <div class="cart-item">
+                        <img src="<%= item.productId.image %>" alt="<%= item.productId.name %>">
+                        <div class="item-details">
+                            <h2><%= item.productId.name %></h2>
+                            <p><%= item.productId.description %></p>
+                            <div class="quantity-controls">
+                                <form action="/users/cart/update" method="POST">
+                                    <input type="hidden" name="productId" value="<%= item.productId._id %>">
+                                    <button type="submit" name="action" value="decrease" class="decrease-btn">-</button>
+                                    <span class="quantity"><%= item.quantity %></span>
+                                    <button type="submit" name="action" value="increase" class="increase-btn">+</button>
+                                </form>
+                            </div>
+                            <p>Price: $<span class="price"><%= item.productId.price * item.quantity %></span></p>
+                        </div>
+                        <form action="/users/cart/remove" method="POST">
+                            <input type="hidden" name="productId" value="<%= item.productId._id %>">
+                            <button type="submit" class="remove-btn">Remove</button>
+                        </form>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <p>Your cart is empty.</p>
+            <% } %>
         </div>
-        <!-- Repeat for more items -->
+
+        <div class="cart-summary">
+            <h2>Order Summary</h2>
+            <p>Total: $<span class="total-price">
+                <% 
+                    let totalPrice = 0;
+                    if (cart && cart.items.length > 0) {
+                        cart.items.forEach(item => {
+                            totalPrice += item.productId.price * item.quantity;
+                        });
+                    }
+                    %>
+                <%= totalPrice.toFixed(2) %>
+            </span></p>
+            <button class="checkout-btn" onclick="location.href='/order'">Proceed to Checkout</button>
+        </div>
     </div>
-    <div class="cart-summary">
-        <h2>Order Summary</h2>
-        <p>Total: $<span class="total-price">50.00</span></p>
-        <button class="checkout-btn" onclick="location.href='/views/order.html'">Proceed to Checkout</button>
-    </div>
-</div>
 
+    <button onclick="goBack()">Back</button>
+    <br><br>
 
-
-
-
-<button onclick="goBack()">Back</button>
-<br><br>
-
-
-<%- include('partials/footer') %>
-
-
+    <%- include('partials/footer') %>
 
 </body>
 </html>
