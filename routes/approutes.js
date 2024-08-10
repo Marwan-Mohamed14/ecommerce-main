@@ -5,9 +5,14 @@ const productController = require('../controllers/productcontroller');
 const User = require('../models/users');
 const Product = require('../models/product'); // Import Product model
 
+router.post('/add-user', userController.addUser);
 // Routes for managing users and products
 router.get('/ManageUsers', userController.getAllUsers);
 router.get('/ManageProducts', productController.getAllProducts);
+router.post('/signup', userController.signup);
+router.post('/products', productController.addProduct);
+
+
 
 // Inline middleware to check if the user is logged in
 const authMiddleware = (req, res, next) => {
@@ -159,8 +164,5 @@ router.get('/admin', authMiddleware, (req, res) => {
 });
 
 // Routes for handling POST requests
-router.post('/signup', userController.signup);
-router.post('/products', productController.addProduct);
-router.post('/add-user', userController.addUser);
 
 module.exports = router;

@@ -30,8 +30,8 @@
                     <td><%= user.Email %></td>    <!-- Use lowercase 'email' -->
                     <td><%= user.Type %></td>     <!-- Added Type -->
                     <td class="actions">
-                        <button class="edit">Edit</button>
-                        <button class="delete">Delete</button>
+                        <button class="edit" onclick="handleEdit('<%= user._id %>')">Edit</button>
+                        <button class="delete" onclick="handleDelete('<%= user._id %>')">Delete</button>
                     </td>
                 </tr>
             <% }) %>

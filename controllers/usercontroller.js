@@ -197,9 +197,13 @@ exports.updateUser = (req, res) => {
         });
 };
 
+
+// Function to handle deleting a user
 // Function to handle deleting a user
 exports.deleteUser = (req, res) => {
-    const { userId } = req.body;
+    const { userId } = req.params;
+
+    console.log('Deleting user with ID:', userId); // Debugging
 
     if (!userId) {
         return res.status(400).send('User ID is required');
@@ -211,10 +215,11 @@ exports.deleteUser = (req, res) => {
                 return res.status(404).send('User not found');
             }
 
+            console.log('User deleted:', user); // Debugging
             res.status(200).send('User deleted successfully');
         })
         .catch(error => {
-            console.error('Error deleting user:', error);
+            console.error('Error deleting user:', error); // Debugging
             res.status(500).send('Internal server error: ' + error.message);
         });
 };
