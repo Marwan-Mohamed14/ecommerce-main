@@ -21,36 +21,36 @@ exports.getCart = async (req, res) => {
     }
 };
 
-// Function to add a product to the cart
+
 exports.addToCart = async (req, res) => {
     try {
         const userId = req.session.userId;
         if (!userId) {
-            return res.redirect('/login'); // Ensure the user is logged in
+            return res.redirect('/login'); 
         }
 
         const productId = req.params.productId;
-        const quantity = req.body.quantity || 1; // Default quantity to 1 if not specified
+        const quantity = req.body.quantity || 1;
 
         let cart = await Cart.findOne({ userId });
 
         if (!cart) {
-            // If the user doesn't have a cart yet, create one
+      
             cart = new Cart({ userId, items: [] });
         }
 
         const existingItem = cart.items.find(item => item.productId.equals(productId));
 
         if (existingItem) {
-            // If the product already exists in the cart, increment the quantity
+ 
             existingItem.quantity += quantity;
         } else {
-            // If the product doesn't exist in the cart, add it
+     
             cart.items.push({ productId, quantity });
         }
 
         await cart.save();
-        res.redirect('/cartt'); // Redirect to the cart page after adding an item
+        res.redirect('/cartt'); 
     } catch (error) {
         console.error('Error adding to cart:', error);
         res.status(500).send('Server error');
@@ -70,7 +70,7 @@ exports.removeFromCart = async (req, res) => {
         let cart = await Cart.findOne({ userId });
 
         if (!cart) {
-            return res.redirect('/cartt'); // Redirect to the cart page if cart is not found
+            return res.redirect('/cartt'); 
         }
 
         cart.items = cart.items.filter(item => !item.productId.equals(productId));
