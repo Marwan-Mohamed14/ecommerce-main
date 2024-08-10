@@ -11,36 +11,7 @@
 </head>
 <body>
 
-<header>
-    <div class="navbar">
-        <div class="top-bar">
-            <div class="dropdown">
-                <button class="dropbtn">Categories</button>
-                <div class="dropdown-content">
-                    <a href="#">Category 1</a>
-                    <a href="#">Category 2</a>
-                    <a href="#">Category 3</a>
-                </div>
-            </div>
-            <div class="logo">
-                <img src="looogo.png" alt="Logo">  
-                <span style="color: white;"><i class="fa-solid fa-location-dot" style="color: #c57f50;"></i> Deliver to <strong>Egypt</strong></span>
-            </div>
-            <div class="search-container">
-                <span><i class="fa-solid fa-magnifying-glass" style="color: #c57f50;"></i></span>
-                <input type="text" placeholder="What are you looking for?">
-            </div>
-            <div class="menu">
-                <a href="/homepage">Home <i class="fa-solid fa-house" style="color:#c57f50;"></i></a>
-                <a href="#">العربية</a>
-                
-                <a href="/login">Log in <i class="fa-solid fa-user" style="color: #c57f50;"></i></a>
-                <a href="#">Wishlist <i class="fa-solid fa-heart" style="color: #c57f50;"></i></a >
-                <a href="/cartt">Cart <i class="fa-solid fa-cart-shopping" style="color: #c57f50;"></i> </a>
-            </div>
-        </div>
-    </div>
-</header>
+    <%- include('partials/nav') %>
 
 
 
@@ -96,42 +67,7 @@
 <br><br>
 
 
-    <footer>
-        <div class="footer-content">
-            <div>
-                <h4>CoolGadgets Logo</h4>
-                <p>Discover the Future<br>With CoolGadgets!</p>
-            </div>
-            <div>
-                <h4>Navigation</h4>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Products</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>Useful Links</h4>
-                <ul>
-                    <li><a href="#">Coupons</a></li>
-                    <li><a href="#">Blog Post</a></li>
-                    <li><a href="#">Return Policy</a></li>
-                    <li><a href="#">Join Affiliate</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>Follow Us</h4>
-                <ul>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">YouTube</a></li>
-                </ul>
-            </div>
-        </div>
-        <p>&copy; Copyright 2024 - Store</p>
-    </footer>
-
+<%- include('partials/footer') %>
 
 
 

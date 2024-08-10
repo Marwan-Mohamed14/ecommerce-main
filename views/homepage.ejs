@@ -10,21 +10,9 @@
 </head>
 <body>
   
-<header>
-  <div class="topnav">
-    <div class="left-section">
-      <a class="active"    href="/homepage">   <i class="fa-solid fa-house" style="color:#ffffff;"></i>  Home </i></a>
-      <a href="/login"><i class="fa-solid fa-user" style="color: #ffffff;"></i>  Login</a>
-      <a href="/feedback"><i class="fa-solid fa-phone" style="color: #ffffff;"></i>  Contact</a>
-      <a href="/cartt"><i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i>  Cart</a>
-      <button id="darkModeToggle" class="dark-mode-toggle">
-        <img id="icon" src="./public/Pictures/sun_120349 (1).png" alt="Dark Mode Toggle">
-    </button>
-    </div>
-    <span style="color: white;"><i class="fa-solid fa-location-dot" style="color: #c57f50;"></i> Deliver to <strong>Egypt</strong></span>
-    
-  </div>
-</header>
+    <%- include('partials/nav') %>
+
+
 
 <div class="banner">
     <div class="banner-content">
@@ -53,41 +41,9 @@
 </div>
 
 
-<footer>
-    <div class="footer-content">
-        <div>
-            <h4>CoolGadgets Logo</h4>
-            <p>Discover the Future<br>With CoolGadgets!</p>
-        </div>
-        <div>
-            <h4>Navigation</h4>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Products</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </div>
-        <div>
-            <h4>Useful Links</h4>
-            <ul>
-                <li><a href="#">Coupons</a></li>
-                <li><a href="#">Blog Post</a></li>
-                <li><a href="#">Return Policy</a></li>
-                <li><a href="#">Join Affiliate</a></li>
-            </ul>
-        </div>
-        <div>
-            <h4>Follow Us</h4>
-            <ul>
-                <li><a href="#">Facebook</a></li>
-                <li><a href="#">Twitter</a></li>
-                <li><a href="#">Instagram</a></li>
-                <li><a href="#">YouTube</a></li>
-            </ul>
-        </div>
-    </div>
-    <p>&copy; Copyright 2024 - Store</p>
-</footer>
+ <%- include('partials/footer') %>
+
+ 
 <script src="/JavaScript/admin.js"></script>
 
 </body>
