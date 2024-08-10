@@ -111,5 +111,5 @@ router.delete('/:id', async (req, res) => {
     }
 });
 router.get('/' , productController.getAllProducts2);
-
+router.get('/', productController.getAllProducts3);
 module.exports = router;

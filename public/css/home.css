@@ -397,8 +397,8 @@ body.dark-mode {
     cursor: pointer;
     width: 100%;
     font-size: 18px;
-    border-bottom-left-radius: 15px; /* Match the card's rounded corners */
-    border-bottom-right-radius: 15px; /* Match the card's rounded corners */
+    border-bottom-left-radius: 15px; 
+    border-bottom-right-radius: 15px; 
 }
 
 .card button:hover {
@@ -493,5 +493,3 @@ body.dark-mode {
                         font-size: 14px; /* Adjusted font size for smaller screens */
                     }
                 }
-
-                

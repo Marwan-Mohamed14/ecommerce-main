@@ -19,6 +19,7 @@ router.post('/products', productController.addProduct);
 router.get('/homepage', productController.getPaginatedHomePage);
 router.get('/ManageOrders', orderController.getAllOrders);
 router.get('/buy', orderController.getUserOrders);
+router.get('/trending', productController.getAllProducts3);
 
 
 // Inline middleware to check if the user is logged in
@@ -102,6 +103,9 @@ router.get('/changepass', (req, res) => {
 
 router.get('/featured-items', (req, res) => {
     res.render('featured-items');
+});
+router.get('/trending', (req, res) => {
+    res.render('trending');
 });
 
 // Updated Homepage route to fetch and display products

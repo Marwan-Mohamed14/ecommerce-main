@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/trending.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <%- include('partials/nav') %>
+
+
+    <div class="containerr">
+        <% products.forEach(product => { %>
+            <div class="card">
+                <div class="image-container">
+                    <img src="<%= product.image %>" alt="<%= product.name %>">
+                </div>
+                <h1><%= product.name %></h1>
+                <p class="price">$<%= product.price %></p>
+                <p><%= product.description %></p>
+                <p>Left in stock: <%= product.stock %></p>
+               
+            </div>
+        <% }); %>
+      </div>
+
+
+      <%- include('partials/footer') %>
+</body>
+</html>
