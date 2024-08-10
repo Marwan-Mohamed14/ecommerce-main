@@ -4,6 +4,42 @@ const fs = require('fs');
 const Product = require('../models/product');
 const upload = require('../JavaScript/UploadPhoto'); // Import multer configuration
 
+
+
+exports.getPaginatedHomePage = async (req, res) => {
+    const page = parseInt(req.query.page) || 1; // Default to page 1 if not specified
+    const limit = 4; // Number of products per page
+
+    try {
+        const { products, currentPage, totalPages } = await exports.getPaginatedProducts(page, limit);
+        console.log('Current Page:', currentPage); // Debugging statement
+        console.log('Total Pages:', totalPages); // Debugging statement
+        res.render('homepage', { products, currentPage, totalPages });
+    } catch (error) {
+        console.error('Error fetching paginated homepage:', error);
+        res.status(500).send('Error rendering paginated homepage');
+    }
+};
+
+
+// Pagination function
+exports.getPaginatedProducts = async (page = 1, limit = 4) => {
+    try {
+        const skip = (page - 1) * limit;
+        const products = await Product.find().skip(skip).limit(limit);
+        const totalProducts = await Product.countDocuments();
+        return {
+            products,
+            currentPage: page,
+            totalPages: Math.ceil(totalProducts / limit)
+        };
+    } catch (error) {
+        console.error('Error fetching paginated products:', error);
+        throw new Error('Error fetching paginated products');
+    }
+};
+
+
 // Helper function to get all products
 exports.getAllProductsData = async () => {
     try {

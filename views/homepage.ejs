@@ -43,7 +43,8 @@
   <% }); %>
 </div>
 
-<%- include('partials/pagination') %>
+<%- include('partials/pagination', { currentPage: currentPage, totalPages: totalPages }) %>
+
  <%- include('partials/footer') %>
 
  

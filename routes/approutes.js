@@ -11,6 +11,7 @@ router.get('/ManageUsers', userController.getAllUsers);
 router.get('/ManageProducts', productController.getAllProducts);
 router.post('/signup', userController.signup);
 router.post('/products', productController.addProduct);
+router.get('/homepage', productController.getPaginatedHomePage);
 
 
 
