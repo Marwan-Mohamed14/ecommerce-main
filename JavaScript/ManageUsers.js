@@ -25,14 +25,48 @@ function showModal() {
         </select>
     `;
     modalTitle.innerText = 'Add User';
-    document.getElementById('modal').style.display = 'flex'; // Show the modal
+    document.getElementById('modal').style.display = 'flex'; 
 }
 
 function closeModal() {
-    document.getElementById('modal').style.display = 'none'; // Hide the modal
+    document.getElementById('modal').style.display = 'none'; 
 }
 
+
+function validateForm() {
+    const username = document.getElementById('modalUsername').value.trim();
+    const email = document.getElementById('modalEmail').value.trim();
+    const password = document.getElementById('modalPassword').value;
+    const type = document.getElementById('modalType').value;
+
+    if (!username || !email || !password || !type) {
+        alert('All fields are required.');
+        return false;
+    }
+
+    const emailPattern = /@.*\./;
+    if (!emailPattern.test(email)) {
+        alert('Please enter a valid email address with "@" and "."');
+        return false;
+    }
+
+    if (password.length < 8) {
+        alert('Password must be at least 8 characters long.');
+        return false;
+    }
+
+    return true;
+}
+
+
+
+
 function saveUser() {
+
+    if (!validateForm()) {
+        return; 
+    }
+
     const form = document.getElementById('modalForm');
     const formData = new FormData(form);
     const userData = {};

@@ -49,7 +49,80 @@ function closeModal() {
     }
 }
 
+
+
+function validateForm() {
+    const form = document.getElementById('modalForm');
+    const name = form.querySelector('#modalProductName').value.trim();
+    const price = parseFloat(form.querySelector('#modalProductPrice').value);
+    const quantity = parseInt(form.querySelector('#modalProductQuantity').value, 10);
+    const description = form.querySelector('#modalProductDescription').value.trim();
+
+    if (!name || !description) {
+        alert('Name and Description cannot be empty.');
+        return false;
+    }
+
+    if (isNaN(price) || price < 0) {
+        alert('Price must be a non-negative number.');
+        return false;
+    }
+
+    if (isNaN(quantity) || quantity < 0) {
+        alert('Quantity must be a non-negative number.');
+        return false;
+    }
+
+    return true;
+}
+
 function saveProduct() {
+    if (!validateForm()) {
+        return; 
+    }
+
+    const modalForm = document.getElementById('modalForm');
+    const formData = new FormData(modalForm);
+    const mode = document.getElementById('modalSaveButton').dataset.mode;
+    const productId = document.getElementById('modalSaveButton').dataset.productId;
+
+    const endpoint = mode === 'edit' ? `/products/${productId}` : '/products';
+    const method = mode === 'edit' ? 'PUT' : 'POST';
+
+    fetch(endpoint, {
+        method: method,
+        body: formData
+    })
+    .then(response => response.text())
+    .then(text => {
+        console.log('Response Text:', text);
+        try {
+            const data = JSON.parse(text);
+            console.log('Parsed Data:', data);
+            return data;
+        } catch (error) {
+            console.error('Error parsing JSON:', error);
+            throw new Error('Invalid JSON response');
+        }
+    })
+    .then(data => {
+        console.log('Success:', data);
+        closeModal();
+        fetchProducts(); // Refresh the product list
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+
+
+
+function saveProduct() {
+
+    if (!validateForm()) {
+        return; // Stop execution if validation fails
+    }
     const modalForm = document.getElementById('modalForm');
     const formData = new FormData(modalForm);
     const mode = document.getElementById('modalSaveButton').dataset.mode;
