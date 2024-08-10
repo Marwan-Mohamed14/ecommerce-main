@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" >
-    <head>
-        <meta charset="UTF-8">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>buy history</title>
-        <link rel="stylesheet" href="/css/buy.css">
-    </head>
-</html>
+    <title>Buy History</title>
+    <link rel="stylesheet" href="/css/buy.css">
+</head>
 <body>
     <h1>Buy History</h1>
     <hr>
@@ -15,17 +14,28 @@
         <table id="buy-history-table">
             <thead>
                 <tr>
-                    <th>Product Name</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
+                    <th>Order ID</th>
                     <th>Date</th>
+                    <th>Postal Code</th>
+                    <th>Address</th>
+                    <th>Payment Method</th>
                 </tr>
             </thead>
             <tbody>
-                
+                <% orders.forEach(order => { %>
+                    <% order.items.forEach(item => { %>
+                        <tr>
+                            <td><%= order._id %></td>       
+                            <td><%= order.createdAt.toDateString() %></td>
+                            <td><%= order.postalcode %></td> <!-- Assuming postalCode is a field in the order -->
+                            <td><%= order.address %></td> <!-- Assuming address is a field in the order -->
+                            <td><%= order.paymentMethod %></td> <!-- Assuming paymentMethod is a field in the order -->
+                        </tr>
+                    <% }); %>
+                <% }); %>
             </tbody>
         </table>
     </div>
-    <button onclick=" window.history.back() " id="back" type="button">Back</button>
-
+    <button onclick="window.history.back()" id="back" type="button">Back</button>
 </body>
+</html>

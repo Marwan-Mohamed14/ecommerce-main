@@ -1,49 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset=“UTF-8”>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE-edge">
-   
-
- 
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
- <link rel="stylesheet" href="/css/manageord.css">
-
-    <title>Home Page</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/manageord.css">
+    <title>Admin Orders</title>
 </head>
 <body>
     <%- include('admin') %> 
-    <button id="Back"  onclick="window.history.back()">Back</button>
-<table>
-    <tr>
-        <th>Order ID</th>
-        <th>Customer</th>
-        <th>Product</th>
-        <th>Quantity</th>
-        <th>Status</th>
-        <th>Actions</th>
-    </tr>
-    <tr data-id="Order-1">
-        <td>1</td>
-        <td>Customer 1</td>
-        <td>Product 1</td>
-        <td>2</td>
-        <td>Pending</td>
-        <td class="actions">
-            <button class="edit">Edit</button>
-            <button class="delete">Delete</button>
-        </td>
-    </tr>
-    <tr data-id="Order-2">
-        <td>2</td>
-        <td>Customer 2</td>
-        <td>Product 2</td>
-        <td>1</td>
-        <td>Shipped</td>
-        <td class="actions">
-            <button class="edit">Edit</button>
-            <button class="delete">Delete</button>
-        </td>
-    </tr>
-</table>
+    <button id="Back" onclick="window.history.back()">Back</button>
+    <table>
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Payment Method</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% orders.forEach(order => { %>
+                <tr data-id="Order-<%= order._id %>">
+                    <td><%= order._id %></td>
+                    <td><%= order.paymentMethod %></td> <!-- Assuming paymentMethod is a field in the order -->
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</body>
+</html>

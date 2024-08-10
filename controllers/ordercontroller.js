@@ -41,5 +41,29 @@ exports.confirmOrder = async (req, res) => {
         res.status(500).send('Server error');
     }
 };
+exports.getAllOrders = async (req, res) => {
+    try {
+        const orders = await Order.find(); // No populate, returns raw order data
+        res.render('manageOrders', { orders });
+    } catch (error) {
+        res.status(500).send('Server error');
+    }
+};
+
+
+exports.getUserOrders = async (req, res) => {
+    try {
+        const userId = req.session.userId;
+        if (!userId) {
+            return res.redirect('/login');
+        }
+
+        const orders = await Order.find({ userId }); // No populate, returns raw order data
+        res.render('buy', { orders });
+    } catch (error) {
+        res.status(500).send('Server error');
+    }
+};
+
 
 

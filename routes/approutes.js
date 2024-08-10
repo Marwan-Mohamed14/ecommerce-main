@@ -4,6 +4,7 @@ const userController = require('../controllers/usercontroller');
 const productController = require('../controllers/productcontroller');
 const cartController = require('../controllers/cartController')
 const problemController = require('../controllers/problemController');
+const orderController = require('../controllers/ordercontroller');
 const User = require('../models/users');
 const Product = require('../models/product'); // Import Product model
 
@@ -16,7 +17,8 @@ router.get('/ManageProducts', productController.getAllProducts);
 router.post('/signup', userController.signup);
 router.post('/products', productController.addProduct);
 router.get('/homepage', productController.getPaginatedHomePage);
-
+router.get('/ManageOrders', orderController.getAllOrders);
+router.get('/buy', orderController.getUserOrders);
 
 
 // Inline middleware to check if the user is logged in
