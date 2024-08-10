@@ -62,7 +62,7 @@ body {
   }
   .btn-submit {
     background-color: #c57f50; /* Facebook blue */
-    color: black;
+    color:white;
   }
   .btn-submit:hover {
     background-color:#b36b40;

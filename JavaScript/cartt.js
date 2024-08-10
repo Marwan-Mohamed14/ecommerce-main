@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const priceElem = item.querySelector('.price');
         const totalPriceElem = document.querySelector('.total-price');
 
-        decreaseBtn.addEventListener('click', () => {
+        decreaseBtn.addEventListener('click', (event) => {
+            event.preventDefault();  // Prevent form submission
             let quantity = parseInt(quantityElem.textContent);
             if (quantity > 1) {
                 quantity--;
@@ -17,7 +18,8 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        increaseBtn.addEventListener('click', () => {
+        increaseBtn.addEventListener('click', (event) => {
+            event.preventDefault();  // Prevent form submission
             let quantity = parseInt(quantityElem.textContent);
             quantity++;
             quantityElem.textContent = quantity;
@@ -35,7 +37,3 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
-
-function goBack() {
-    window.history.back();
-}

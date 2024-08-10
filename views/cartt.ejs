@@ -11,7 +11,7 @@
 </head>
 <body>
     <%- include('partials/nav') %>
-    
+
     <div class="cart-container">
         <header class="cart-header">
             <h1>Shopping Cart</h1>
@@ -28,14 +28,14 @@
                             <div class="quantity-controls">
                                 <form action="/users/cart/update" method="POST">
                                     <input type="hidden" name="productId" value="<%= item.productId._id %>">
-                                    <button type="submit" name="action" value="decrease" class="decrease-btn">-</button>
+                                    <button type="button" name="action" value="decrease" class="decrease-btn">-</button>
                                     <span class="quantity"><%= item.quantity %></span>
-                                    <button type="submit" name="action" value="increase" class="increase-btn">+</button>
+                                    <button type="butt" name="action" value="increase" class="increase-btn">+</button>
                                 </form>
                             </div>
                             <p>Price: $<span class="price"><%= item.productId.price * item.quantity %></span></p>
                         </div>
-                        <form action="/users/cart/remove" method="POST">
+                        <form action="/cart/remove/<%= item.productId._id %>" method="POST">
                             <input type="hidden" name="productId" value="<%= item.productId._id %>">
                             <button type="submit" class="remove-btn">Remove</button>
                         </form>
