@@ -7,11 +7,13 @@ const bodyParser = require('body-parser');
 const multer = require('multer'); // Add multer for file uploads
 const app = express();
 const port = 8000;
+const problemRoutes = require('./routes/problemroutes');
 const approutes = require('./routes/approutes'); // Importing the routes
 const productRoutes = require('./routes/productsroutes');
 const userRoutes = require('./routes/userroutes');
 const carttRoutes = require('./routes/cartroutes');
-const orderRoutes = require('./routes/orderroutes');
+
+
 
 // Middleware setup for file uploads
 const storage = multer.diskStorage({
@@ -54,7 +56,7 @@ app.use('/', approutes); // Routes that include authentication logic
 app.use('/products', productRoutes); // Routes for products
 app.use('/users', userRoutes); // Routes for users
 app.use(carttRoutes);
-app.use( orderRoutes);
+app.use('/', problemRoutes);
 
 // MongoDB connection
 const mongoURI = 'mongodb+srv://Kal:123321123321@cluster0.uodoskc.mongodb.net/Cluster0?retryWrites=true&w=majority&appName=Cluster0';
