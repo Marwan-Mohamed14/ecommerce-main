@@ -36,10 +36,10 @@ exports.signup = (req, res) => {
                 return res.status(400).send('User already exists');
             }
 
-            // Hash the password
+     
             bcrypt.hash(password, 10)
                 .then(hashedPassword => {
-                    // Create a new user
+          
                     const newUser = new User({
                         Username: username,
                         Email: email,
