@@ -21,7 +21,7 @@ exports.getCart = async (req, res) => {
     }
 };
 
-
+// Function to add a product to the cart
 exports.addToCart = async (req, res) => {
     try {
         const userId = req.session.userId;

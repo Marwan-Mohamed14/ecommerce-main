@@ -1,0 +1,27 @@
+// controllers/problemController.js
+const Problem = require('../models/problem');
+
+exports.submitProblem = async (req, res) => {
+    try {
+        const { problem } = req.body;
+        if (!problem) {
+            return res.status(400).json({ error: 'Problem description is required' });
+        }
+
+        const newProblem = new Problem({ problem });
+        await newProblem.save();
+
+        res.status(200).json({ message: 'Problem reported successfully' });
+    } catch (error) {
+        res.status(500).json({ error: 'Server error. Please try again later.' });
+    }
+};
+// controllers/problemController.js
+exports.viewProblems = async (req, res) => {
+    try {
+        const problems = await Problem.find().sort({ submittedAt: -1 });
+        res.render('report', { problems });
+    } catch (error) {
+        res.status(500).json({ error: 'Server error. Please try again later.' });
+    }
+};

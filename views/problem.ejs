@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>report problem</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet"href="/css/problem.css">
-    </head>
-    <body>
+<head>
+    <title>Report Problem</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/problem.css">
+</head>
+<body>
+    <form action="/report-problem" method="POST">
         <div class="container">
             <h1>What issues have you faced?</h1>
             <textarea name="problem" id="problem" placeholder="Enter the issue"></textarea>
             <div class="button-container">
-                <button id="btn" type="submit">Submit</button>
-                <button onclick="window.history.back()" id="back" type="submit">Back</button>
+                <button id="btn" type="submit">Submit</button> <!-- Changed to type="submit" -->
+                <button onclick="window.history.back()" id="back" type="button">Back</button>
             </div>
         </div>
-        
+    </form>
+    <script src="/JavaScript/problem.js"></script>
+</body>
+</html>
