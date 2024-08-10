@@ -11,7 +11,7 @@ exports.submitProblem = async (req, res) => {
         const newProblem = new Problem({ problem });
         await newProblem.save();
 
-        res.status(200).alert('Problem reported successfully');
+        res.status(200).alert({ message: 'Problem reported successfully' });
     } catch (error) {
         res.status(500).json({ error: 'Server error. Please try again later.' });
     }
