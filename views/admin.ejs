@@ -11,12 +11,26 @@
     <header>
         <h1>Admin Panel</h1>
         <div class="header-right">
-            <img src="/Pictures/profile-user.png" width="15%" alt="Profile Picture">
             <button onclick="location.href='/login'" type="button">Logout</button>
-            <button id="darkModeToggle" class="dark-mode-toggle">
-                <img id="icon" src="/Pictures/sun_120349.png" alt="Dark Mode Toggle">
-            </button>
-        </div>
+            <button id="darkModeToggle" style="
+            background-color: #333; 
+            border: 1px solid #ccc; 
+            border-radius: 5px; 
+            padding: 10px; 
+            cursor: pointer; 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            outline: none; 
+            margin-right: 40px;
+          ">
+            <img id="icon" src="/Pictures/sun_120349 (1).png" alt="Dark Mode Toggle" style="
+              display: block; /* Remove extra space below the image */
+              width: 24px; /* Set image size */
+              height: 24px; /* Set image size */
+            ">
+          </button>
+          
     </header>
     
     <div class="wrapper">
