@@ -1,0 +1,55 @@
+.container {
+    width: 70%; /* Reduced width for better centering */
+    max-width: 1000px; /* Set a max-width for larger screens */
+    margin: 40px auto; /* Center the container horizontally with automatic margins */
+    padding: 30px; /* Increased padding for more spacing */
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Heading Styles */
+.container h2 {
+    font-size: 28px; /* Increased font size */
+    color: #333;
+    margin-bottom: 30px; /* Increased margin for more space */
+    font-weight: bold;
+    text-transform: uppercase; /* Added text transformation for a more formal look */
+}
+
+/* Instruction Box Styles */
+.instruction-box {
+    display: block; /* Changed to block to ensure full width usage */
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 25px; /* Increased padding for more spacing */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: left; /* Align text inside the box to the left */
+    max-width: 600px; /* Keep max-width for better readability */
+    margin: 0 auto; /* Center the instruction box within the container */
+}
+
+/* Text Styles */
+.instruction-box p {
+    font-size: 18px; /* Increased font size for better readability */
+    color: #555;
+    line-height: 1.6; /* Slightly increased line-height */
+    margin-bottom: 20px;
+}
+
+.instruction-box ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-bottom: 20px; /* Added margin to separate the list from the next section */
+}
+
+.instruction-box li {
+    margin-bottom: 15px; /* Increased margin between list items */
+}
+
+.instruction-box strong {
+    color: #333;
+    font-weight: bold;
+}

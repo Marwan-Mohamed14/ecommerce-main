@@ -3,7 +3,10 @@ body{
     margin: 0;
 }
 
-
+body.dark-mode {
+    background: linear-gradient(to left, #2e2e2e, #1c1c1c);
+    color: #e0e0e0; /* Optional: Adjust text color for readability in dark mode */
+}
 
 
 

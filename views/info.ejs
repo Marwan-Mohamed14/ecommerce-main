@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/info.css">
+
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <%- include('admin') %> 
+
+    <div class="container">
+        <h2>Admin Responsibilities</h2>
+        <div class="instruction-box">
+            <p>Welcome to the Admin Dashboard. As an admin, you have a critical role in managing the system. Below are your key responsibilities:</p>
+            <ul>
+                <li><strong>Edit Products:</strong> You can update product information, including the name, price, description, and availability. Ensure all product details are accurate and up-to-date.</li>
+                <li><strong>Manage Users:</strong> You have the authority to edit user information such as names and emails. This includes resetting user passwords and updating user roles when necessary.</li>
+                <li><strong>Delete Orders:</strong> Orders that are completed or no longer needed can be deleted from the system. Please ensure that orders are properly reviewed before deletion to prevent loss of important data.</li>
+                <li><strong>Monitor System Activity:</strong> Keep an eye on system logs and user activity to identify any unusual behavior or potential security issues. Report any concerns to the technical team immediately.</li>
+                <li><strong>Resolve Issues:</strong> Address any issues or concerns reported by users. You can view, track, and resolve problem reports to ensure a smooth user experience.</li>
+                <li><strong>Backup Management:</strong> Regularly check that backups are being performed correctly and that the data can be restored in case of emergencies. Coordinate with IT for any required actions.</li>
+            </ul>
+            <p>If you have any questions or need assistance with any of your tasks, please reach out to the technical support team.</p>
+        </div>
+    </div>
+
+    <script src="/JavaScript/admin.js"></script>
+</body>
+</html>

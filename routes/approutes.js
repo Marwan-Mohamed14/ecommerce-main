@@ -155,8 +155,8 @@ router.get('/ManageUsers', (req, res) => {
     res.render('ManageUsers');
 });
 
-router.get('/profileA', (req, res) => {
-    res.render('profileA');
+router.get('/info', (req, res) => {
+    res.render('info');
 });
 
 router.get('/admin', authMiddleware, (req, res) => {

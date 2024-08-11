@@ -3,65 +3,69 @@ body{
     background: linear-gradient(to left , #ffe8c9 , white); 
     margin: 0;
 }
-.navbar {
+body.dark-mode {
+    background: linear-gradient(to left, #2e2e2e, #1c1c1c);
+    color: #e0e0e0; /* Optional: Adjust text color for readability in dark mode */
+}
+/* Style for the navigation bar */
+.topnav {
+    overflow: hidden;
     background-color: #333;
-    padding: 10px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.top-bar {
-    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding-bottom: 10px;
-}
-
-.top-bar .logo {
+    padding: 10px;
+  }
+  
+  /* Left section for navigation links */
+  .left-section {
     display: flex;
     align-items: center;
-    flex: 1;
-}
-
-.top-bar .logo img {
-    height: 40px;
-    margin-right: 10px;
-}
-
-.top-bar .search-container {
-    flex-grow: 2;
-    display: flex;
-    justify-content: center;
-    order: 2;
-}
-
-.top-bar .search-container input[type="text"] {
-    width: 70%; /* Enlarged search bar */
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.top-bar .menu {
-    display: flex;
-    align-items: center;
-    order: 3;
-}
-
-.top-bar .menu a {
-    margin: 0 10px;
+    justify-content: flex-start;
+    flex-grow: 1;
+  }
+  
+  .left-section a {
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
     text-decoration: none;
-    color: #fff; /* White text */
-    font-weight: bold;
-}
-
-.top-bar .menu a:hover {
-    color: #c57f50; /* Gold color on hover */
-}
-
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Hover effect for links */
+  .left-section a:hover {
+    background-color: #c57f50;
+    color: white;
+  }
+  
+  /* Active link styling */
+  .left-section a.active {
+    background-color: #c57f50;
+    color: white;
+  }
+  
+  /* Responsive Design */
+  @media screen and (max-width: 600px) {
+    .topnav {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .left-section {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    
+    .left-section a {
+      width: 100%;
+      padding: 10px 0;
+      box-sizing: border-box;
+    }
+  }
+  
 /* Categories Dropdown */
 .dropdown {
     position: relative;
